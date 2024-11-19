@@ -5,10 +5,10 @@ cd $(dirname "$0") &&
 
 # If git is clean,
 if [ -z "$(git status --porcelain)" ]; then
-	# Update hardware/scan.nix
-	nixos-generate-config --show-hardware-config > ./hardware/scan.nix &&
 	# Update flake.lock
-	nix flake update || exit 1
+	nix flake update && 
+	# Update hardware/scan.nix
+	nixos-generate-config --show-hardware-config > ./hosts/$(hostname)/hardware-scan.nix || exit 1
 
     # If nothing changed,
 	if [ -z "$(git status --porcelain)" ]; then
