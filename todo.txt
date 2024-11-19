@@ -1,0 +1,9 @@
+- Check https://nixos.wiki/wiki/Accelerated_Video_Playback, https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration, https://wiki.archlinux.org/title/Hardware_video_acceleration#Verification
+- Check hardware.nix
+- Try power brick > hub (via the attached cable) > laptop
+- Camera?
+  # Camera
+  # hardware.ipu = {
+  #   enable = true;
+  #   platform = "ipu6epmtl";
+  # };
