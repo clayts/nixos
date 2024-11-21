@@ -9,4 +9,3 @@
 - Make firefox initial window size constant
 - Make fn+backspace=delete?
 - Delete 'screenshot' app?
-- Nail down fonts for consistency
