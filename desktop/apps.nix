@@ -8,7 +8,6 @@
     gnome-calculator
     gnome-system-monitor
     gnome-characters
-    gnome-screenshot
     gnome-calendar
     nautilus
     celluloid

@@ -61,7 +61,7 @@ in {
 
   # Remote bloat
   services.xserver.excludePackages = with pkgs; [xterm];
-  environment.gnome.excludePackages = with pkgs; [gnome-tour];
+  environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-screenshot];
 
   # Fonts
   fonts.fontconfig = {

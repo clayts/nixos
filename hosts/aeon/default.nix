@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hardware-scan.nix
     ../../hardware/standard
