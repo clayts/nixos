@@ -5,6 +5,8 @@
 - Hibernate
 - Custom boot logo
 - Check battery performance
-- No sound in Dark Souls
 - Automatic brightness is jumpy
 - Make firefox initial window size constant
+- Make fn+backspace=delete?
+- Delete 'screenshot' app?
+- Nail down fonts for consistency

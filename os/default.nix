@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./shell
   ];
@@ -27,7 +31,7 @@
     consoleLogLevel = 0;
   };
 
-  # Language
+  # Culture
   console.useXkbConfig = true;
   services.xserver.xkb = {
     layout = "gb";
@@ -46,8 +50,14 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+  environment.systemPackages = with pkgs; [
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+  ];
 
   # Nix
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   programs.nh = {
     enable = true;
   };
@@ -65,12 +75,6 @@
       mkdir -p /nix/var/nix/profiles/per-user/root/channels
     '';
   };
-
-  # Required to build etc
-  environment.systemPackages = with pkgs; [
-    git
-    gh
-  ];
 
   # Remove bloat
   documentation.nixos.enable = false;
