@@ -24,12 +24,12 @@ fi
 hostname=$1
 cd $(dirname "$0") &&
 mkdir -p hosts/$hostname &&
-nixos-generate-config --root /mnt --show-hardware-config > hosts/$hostname/hardware-scan.nix &&
+nixos-generate-config --root /mnt --show-hardware-config > hardware/$hostname/scan.nix &&
 echo """
 {...}: {
   imports = [
-    ./hardware-scan.nix
-    ../../hardware/standard 
+    ./scan.nix
+    ../../devices/standard
 
     ../../os
     ../../desktop
@@ -42,4 +42,3 @@ git add . &&
 sudo nixos-install --flake .#$hostname --root /mnt &&
 git commit -am "Bootstrapped $hostname ($(date))" &&
 git push
-

@@ -6,9 +6,9 @@ cd $(dirname "$0") &&
 # If git is clean,
 if [ -z "$(git status --porcelain)" ]; then
 	# Update flake.lock
-	nix flake update && 
+	nix flake update &&
 	# Update hardware/scan.nix
-	nixos-generate-config --show-hardware-config > ./hosts/$(hostname)/hardware-scan.nix || exit 1
+	nixos-generate-config --show-hardware-config > ./hardware/$(hostname)/scan.nix || exit 1
 
     # If nothing changed,
 	if [ -z "$(git status --porcelain)" ]; then
@@ -19,7 +19,7 @@ if [ -z "$(git status --porcelain)" ]; then
         # Commit these updates.
 		git commit -am "Update $(date)" || exit 1
 	fi
-# Otherwise, 
+# Otherwise,
 else
 	# Refuse.
     echo "Update cancelled: Working tree is not clean."
