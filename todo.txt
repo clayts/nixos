@@ -8,4 +8,4 @@
 - Automatic brightness is jumpy
 - Make firefox initial window size constant
 - Make fn+backspace=delete?
-- Delete 'screenshot' app?
+- Wait for update which lets 6.12 build with cam drivers
