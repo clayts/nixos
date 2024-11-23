@@ -80,7 +80,7 @@ in {
 
         # Function to set window title
         function set_win_title() {
-            print -Pn "\e]0;%~: $1\a"
+            print -Pn "\e]0;$1\a"
         }
 
         # Preexec hook to set title before executing command
