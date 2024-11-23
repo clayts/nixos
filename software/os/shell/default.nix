@@ -77,6 +77,22 @@ in {
         # hostfetch
         [[ $SHLVL -eq 1 ]] && ${hostfetch}/bin/hostfetch
 
+
+        # Function to set window title
+        function set_win_title() {
+            print -Pn "\e]0;%~: $1\a"
+        }
+
+        # Preexec hook to set title before executing command
+        function preexec() {
+            set_win_title "$1"
+        }
+
+        # Precmd hook to reset title after command completes
+        function precmd() {
+            set_win_title "zsh"
+        }
+
         # powerlevel10k
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${./powerlevel10k/powerlevel10k.zsh}
