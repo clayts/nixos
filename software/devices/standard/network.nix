@@ -12,5 +12,6 @@
   environment.etc."dhcpcd.conf".text = "";
 
   # Workaround for issues keeping an ipv4 address on certain wireless networks
-  networking.networkmanager.wifi.backend = "iwd";
+  # Seems to cause its own issues
+  # networking.networkmanager.wifi.backend = "iwd";
 }
