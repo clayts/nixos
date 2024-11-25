@@ -16,35 +16,27 @@
 in {
   imports = [
     ./apps.nix
+    ./extensions.nix
   ];
 
   # Packages
-  environment.systemPackages = let
-    rounded-window-corners-reborn = pkgs.callPackage ./rounded-window-corners-reborn {};
-  in
-    with pkgs; [
-      ## Hide CUPS
-      (pkgs.makeDesktopItem {
-        name = "cups";
-        desktopName = "";
-        noDisplay = true;
-      })
+  environment.systemPackages = with pkgs; [
+    ## Hide CUPS
+    (pkgs.makeDesktopItem {
+      name = "cups";
+      desktopName = "";
+      noDisplay = true;
+    })
 
-      ## Theme
-      bibata-cursors
-      papirus-icon-theme
-      adw-gtk3
+    ## Theme
+    bibata-cursors
+    papirus-icon-theme
+    adw-gtk3
 
-      ## Fonts
-      (nerdfonts.override {fonts = ["CascadiaCode"];})
-      noto-fonts
-
-      ## Extensions
-      rounded-window-corners-reborn
-      gnomeExtensions.grand-theft-focus
-      gnomeExtensions.appindicator
-      gnomeExtensions.alphabetical-app-grid
-    ];
+    ## Fonts
+    (nerdfonts.override {fonts = ["CascadiaCode"];})
+    noto-fonts
+  ];
 
   # GNOME
   services = {
@@ -132,14 +124,6 @@ in {
         "org/gnome/shell".favorite-apps = [
           "firefox.desktop"
           "org.gnome.Nautilus.desktop"
-        ];
-
-        ## Extensions
-        "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
-          grand-theft-focus.extensionUuid
-          appindicator.extensionUuid
-          rounded-window-corners-reborn.extensionUuid
-          alphabetical-app-grid.extensionUuid
         ];
 
         "org/gnome/desktop/interface" = interface;
