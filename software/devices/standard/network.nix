@@ -8,8 +8,8 @@
   };
 
   # Workaround for issues getting ipv4 address on certain wireless networks
-  networking.networkmanager.dhcp = "dhcpcd";
-  environment.etc."dhcpcd.conf".text = "";
+  # networking.networkmanager.dhcp = "dhcpcd";
+  # environment.etc."dhcpcd.conf".text = "";
 
   # Workaround for issues keeping an ipv4 address on certain wireless networks
   # Seems to cause its own issues
