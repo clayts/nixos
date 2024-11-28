@@ -1,15 +1,9 @@
 {pkgs, ...}: let
-  extensions = let
-    rounded-window-corners-reborn = pkgs.callPackage ./rounded-window-corners-reborn {};
-  in
-    with pkgs.gnomeExtensions; [
-      rounded-window-corners-reborn
-      grand-theft-focus
-      appindicator
-      alphabetical-app-grid
-      # hide-top-bar
-      # transparent-top-bar-adjustable-transparency
-    ];
+  extensions = with pkgs.gnomeExtensions; [
+    grand-theft-focus
+    appindicator
+    alphabetical-app-grid
+  ];
 in {
   environment.systemPackages = extensions;
 
