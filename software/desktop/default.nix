@@ -34,7 +34,7 @@ in {
     adw-gtk3
 
     ## Fonts
-    (nerdfonts.override {fonts = ["CascadiaCode"];})
+    nerd-fonts.caskaydia-cove
     noto-fonts
   ];
 
