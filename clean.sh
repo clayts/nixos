@@ -1,4 +1,4 @@
 #!/bin/sh
 
 nh clean all -k 3 &&
-nix-store --optimise || exit 1
+nix-store --optimise
