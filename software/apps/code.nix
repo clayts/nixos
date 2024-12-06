@@ -108,6 +108,9 @@
       zed-editor-fhs
       zed-editor-desktop-item
 
+      # HTML
+      python312Packages.weasyprint
+
       # Git
       gitg
       git
