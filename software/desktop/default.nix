@@ -12,6 +12,8 @@
     gtk-theme = "adw-gtk3";
     gtk-enable-primary-paste = false; # Disable middle-click paste as it can accidentally paste stuff when scrolling
     enable-hot-corners = false;
+    font-antialiasing = "rgba";
+    font-hinting = "full";
   };
 in {
   imports = [
