@@ -2,7 +2,6 @@
   # Packages
   environment.systemPackages = with pkgs; [
     gnome-console
-    cheese
     loupe
     file-roller
     gnome-calculator
@@ -11,7 +10,6 @@
     gnome-calendar
     nautilus
     celluloid
-    gnome-text-editor
     gnome-firmware
   ];
 }
