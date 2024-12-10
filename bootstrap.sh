@@ -12,33 +12,28 @@
 # 4. Activate swap, if necessary:
 #     sudo swapon /dev/disk/by-partlabel/linux-swap
 # 5. Mount other partitions, if necessary.
-# 6. nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgs#gh auth login
-# 7. git clone https://github.com/clayts/NixOS
-# 8. Finally, run ./bootstrap.sh <HOSTNAME>
-
-if [ $# -ne 1 ];then
-	echo "Usage: bootstrap.sh <HOSTNAME>"
-	exit
-fi
-
-hostname=$1
-cd $(dirname "$0") &&
-mkdir -p hosts/$hostname &&
-nixos-generate-config --root /mnt --show-hardware-config > hardware/$hostname/scan.nix &&
-echo """
-{...}: {
-  imports = [
-    ./scan.nix
-    ../../devices/standard
-
-    ../../os
-    ../../desktop
-    ../../apps
-  ];
-}
-""" > hosts/$hostname/default.nix &&
-nano hosts/$hostname/default.nix &&
-git add . &&
-sudo nixos-install --flake .#$hostname --root /mnt &&
-git commit -am "Bootstrapped $hostname ($(date))" &&
-git push
+# 6. sudo mkdir /mnt/etc
+# 7. cd /mnt/etc
+# 8. sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgs#gh auth login 
+# 9. open https://github.com/login/device and enter code
+# 10. sudo git clone https://github.com/clayts/nixos
+# 11. cd nixos
+# 12. sudo sh -c "nixos-generate-config --root /mnt --show-hardware-config > hardware/<HOSTNAME>/scan.nix"
+# 13. sudo nano hardware/<HOSTNAME>/default.nix
+# 14. use the following as a starting point:
+# {...}: {
+#   imports = [
+#     ./scan.nix
+#     ../../devices/standard
+# 
+#     ../../os
+#     ../../desktop
+#     ../../apps
+#   ];
+# }
+# 15. sudo git add .
+# 16. sudo nixos-install --flake .#<HOSTNAME> --root /mnt
+# 17. reboot
+# 18. chown -R user /etc/nixos
+# 19. chgrp -R users /etc/nixos
+# 20. sudo systemctl start wallpaper-switcher.service
