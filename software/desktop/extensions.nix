@@ -9,6 +9,7 @@ in {
 
   programs.dconf.profiles.user.databases = [
     {
+      settings."org/gnome/shell".disable-user-extensions = false;
       settings."org/gnome/shell".enabled-extensions =
         map (
           extension: extension.extensionUuid
