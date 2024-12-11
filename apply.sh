@@ -4,7 +4,7 @@
 cd $(dirname "$0") &&
 
 # Switch
-nh os switch .
+nh os switch . &&
 
 # Update font cache
 sudo fc-cache -r
