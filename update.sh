@@ -7,8 +7,8 @@ cd $(dirname "$0") &&
 if [ -z "$(git status --porcelain)" ]; then
 	# Update flake.lock
 	nix flake update &&
-	# Update hardware/scan.nix
-	nixos-generate-config --show-hardware-config > ./hardware/$(hostname)/scan.nix || exit 1
+	# Update hardware/machines/<hostname>/scan.nix
+	nixos-generate-config --show-hardware-config > ./hardware/machines/$(hostname)/scan.nix || exit 1
 
     # If nothing changed,
 	if [ -z "$(git status --porcelain)" ]; then
