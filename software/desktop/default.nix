@@ -117,8 +117,6 @@ in {
   programs.dconf.profiles.user.databases = [
     {
       settings = {
-        ## App menu
-        ### App folders
         "org/gnome/desktop/app-folders" = {folder-children = ["Games"];};
         "org/gnome/desktop/app-folders/folders/Games" = {
           name = "Games";
@@ -128,7 +126,7 @@ in {
           "firefox.desktop"
           "org.gnome.Nautilus.desktop"
         ];
-
+        "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
         "org/gnome/desktop/interface" = interface;
         "org/gnome/desktop/background".picture-uri = "/tmp/wallpaper.jpg";
         "org/gnome/evolution-data-server.calendar" = {
