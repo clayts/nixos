@@ -1,0 +1,21 @@
+1. Partition the disk if necessary.
+2. Mount the destination root filesystem at /mnt:
+        sudo mount /dev/disk/by-partlabel/linux-root /mnt
+3. Mount the boot filesystem at /mnt/boot
+        sudo mkdir /mnt/boot
+        sudo mount -o umask=077 /dev/disk/by-partlabel/boot /mnt/boot
+4. Activate swap, if necessary:
+        sudo swapon /dev/disk/by-partlabel/linux-swap
+5. Mount other partitions, if necessary.
+7. Get this flake:
+        nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgsgh auth login
+        firefox https://github.com/login/device
+        git clone https://github.com/clayts/nixos
+        cd nixos
+8. Scan hardware:
+        sh -c "nixos-generate-config --root /mnt --show-hardware-config > hardware/machines/<HOSTNAME>/scan.nix"
+        nano hardware/machines/<HOSTNAME>/default.nix # Add extra hardware config
+        git add .
+16. Install:
+        sudo nixos-install --flake .<HOSTNAME> --root /mnt
+17. Reboot
