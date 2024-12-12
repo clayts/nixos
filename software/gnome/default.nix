@@ -69,6 +69,7 @@ in {
 
   # Wallpaper
   systemd.timers."wallpaper-switcher" = {
+    enable = true;
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "daily";
