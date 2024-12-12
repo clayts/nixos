@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  # Packages
   environment.systemPackages = with pkgs; [
+    # GNOME
     gnome-console
     loupe
     file-roller
@@ -11,5 +11,11 @@
     nautilus
     celluloid
     gnome-firmware
+
+    # Shell
+    fzf
+    lsd
+    fd
+    zoxide
   ];
 }

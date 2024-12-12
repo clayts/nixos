@@ -8,10 +8,11 @@
         specialArgs = {inherit inputs;};
         modules = [
           {networking.hostName = "${name}";}
-          ./hardware/${name}
+          ./hardware/machines/${name}
+          ./software
         ];
       }))
       (builtins.readDir
-        ./hardware);
+        ./hardware/machines);
   };
 }

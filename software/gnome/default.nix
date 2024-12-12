@@ -17,7 +17,6 @@
   };
 in {
   imports = [
-    ./apps.nix
     ./extensions.nix
   ];
 

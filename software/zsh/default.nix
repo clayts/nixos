@@ -6,12 +6,6 @@ in {
     Defaults:root,%wheel env_keep+=SHLVL
   '';
 
-  environment.systemPackages = with pkgs; [
-    fzf
-    lsd
-    fd
-    zoxide
-  ];
   users.defaultUserShell = pkgs.zsh;
   system.userActivationScripts = {
     touchZshrc = {

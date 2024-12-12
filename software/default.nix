@@ -4,7 +4,12 @@
   ...
 }: {
   imports = [
-    ./shell
+    ./zsh
+    ./gnome
+    ./code.nix
+    ./firefox.nix
+    ./games.nix
+    ./utilities.nix
   ];
 
   system.stateVersion = "24.11";
