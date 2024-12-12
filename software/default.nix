@@ -10,6 +10,7 @@
     ./firefox.nix
     ./games.nix
     ./utilities.nix
+    ./virtualisation.nix
   ];
 
   system.stateVersion = "24.11";
