@@ -3,7 +3,7 @@
     zed-editor-desktop-item = pkgs.makeDesktopItem {
       name = "dev.zed.Zed";
       desktopName = "Zed";
-      exec = "${zed-editor-fhs}/bin/zed-editor %F"; # Use the FHS wrapper
+      exec = "${zed-editor-fhs}/bin/zed-editor -n %F"; # Use the FHS wrapper
       icon = "${pkgs.zed-editor}/share/icons/hicolor/512x512/apps/zed.png"; # Direct path to the icon
       comment = "High-performance, multiplayer code editor";
       categories = ["Development" "TextEditor"];
