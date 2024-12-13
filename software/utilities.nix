@@ -17,5 +17,7 @@
     lsd
     fd
     zoxide
+    lnav
+    stow
   ];
 }
