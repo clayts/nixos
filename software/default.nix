@@ -18,7 +18,7 @@
   # Boot
   boot = {
     ## Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
