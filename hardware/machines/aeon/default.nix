@@ -8,7 +8,7 @@
     ../../sound.nix
     ../../ssd.nix
     ../../fingerprint-reader.nix
-    ../../meteor-lake-camera.nix
+    # ../../meteor-lake-camera.nix
     ../../iio-sensors.nix
   ];
   # boot.blacklistedKernelModules = ["intel_ipu6_psys" "intel_ipu6_isys"];
