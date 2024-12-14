@@ -19,5 +19,7 @@
     zoxide
     lnav
     stow
+    pciutils
+    lshw
   ];
 }
