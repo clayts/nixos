@@ -52,6 +52,9 @@ in {
       # syntax highlighting
       source ${pkgs.zsh-f-sy-h}/share/zsh/site-functions/F-Sy-H.plugin.zsh
 
+      # direnv
+      eval "$(direnv hook zsh)"
+
       # skip in tty
       if [[ -n $DISPLAY ]];
       then
@@ -91,7 +94,6 @@ in {
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${./powerlevel10k/powerlevel10k.zsh}
       fi
-
     '';
   };
 }
