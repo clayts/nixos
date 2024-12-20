@@ -92,7 +92,7 @@
       genericName = "Text Editor";
       startupNotify = false;
     };
-    zed-editor-fhs = pkgs.buildFHSUserEnv {
+    zed-editor-fhs = pkgs.buildFHSEnv {
       name = "zed-editor";
       targetPkgs = pkgs:
         with pkgs; [
