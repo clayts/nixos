@@ -8,14 +8,15 @@
         sudo swapon /dev/disk/by-partlabel/linux-swap
 5. Mount other partitions, if necessary.
 7. Get this flake:
-        nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgsgh auth login
-        firefox https://github.com/login/device
+        nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgs#github-cli -- auth login
         git clone https://github.com/clayts/nixos
         cd nixos
 8. Scan hardware:
         sh -c "nixos-generate-config --root /mnt --show-hardware-config > hardware/machines/<HOSTNAME>/scan.nix"
         nano hardware/machines/<HOSTNAME>/default.nix # Add extra hardware config
         git add .
+        git commit -am "add <HOSTNAME>"
+        git push
 16. Install:
         sudo nixos-install --flake .<HOSTNAME> --root /mnt
 17. Reboot
