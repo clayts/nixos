@@ -21,7 +21,5 @@
     stow
     pciutils
     lshw
-    direnv
-    nix-direnv
   ];
 }

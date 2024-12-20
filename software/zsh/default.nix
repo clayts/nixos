@@ -30,6 +30,13 @@ in {
     EDITOR = "${pkgs.micro}/bin/micro";
     GOPATH = "$HOME/.local/share/go";
   };
+  programs.direnv = {
+    enable = true;
+    silent = true;
+    loadInNixShell = false;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
