@@ -8,7 +8,7 @@ if [ -z "$(git status --porcelain)" ]; then
 	# Update flake.lock
 	nix flake update &&
 	# Update hardware/machines/<hostname>/scan.nix
-	nixos-generate-config --show-hardware-config > ./hardware/machines/$(hostname)/scan.nix || exit 1
+	nixos-generate-config --show-hardware-config > ./hardware/$(hostname)/hardware.nix || exit 1
 
     # If nothing changed,
 	if [ -z "$(git status --porcelain)" ]; then
