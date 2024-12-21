@@ -1,5 +1,7 @@
 {...}: {
   imports = [
+    ./hardware.nix
+
     ../../software
 
     ../../software/devices/firmware-updates.nix
@@ -11,7 +13,5 @@
     ../../software/devices/fingerprint-reader.nix
     ../../software/devices/iio-sensors.nix
     # ../../software/devices/meteor-lake-camera.nix
-
-    ./hardware.nix
   ];
 }
