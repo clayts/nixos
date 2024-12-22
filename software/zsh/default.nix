@@ -32,7 +32,7 @@ in {
   };
   programs.direnv = {
     enable = true;
-    silent = true;
+    # silent = true;
     loadInNixShell = false;
     nix-direnv.enable = true;
     enableZshIntegration = true;
