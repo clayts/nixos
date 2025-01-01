@@ -62,11 +62,6 @@ init() {
         $DOTFILES_GIT checkout
     fi
 
-    # Create main branch if it doesn't exist
-    if ! $DOTFILES_GIT show-ref --verify --quiet refs/heads/main; then
-        $DOTFILES_GIT checkout -b main
-    fi
-
     echo "Dotfiles repository initialized successfully"
 }
 
@@ -134,7 +129,7 @@ push() {
     if ! $DOTFILES_GIT diff --cached --quiet; then
         timestamp=$(date "+%Y-%m-%d %H:%M:%S")
         $DOTFILES_GIT commit -m "$timestamp"
-        $DOTFILES_GIT push origin main
+        $DOTFILES_GIT push
         echo "Changes pushed to remote repository"
     else
         echo "No changes to push"
@@ -144,7 +139,7 @@ push() {
 # Pull changes from remote
 pull() {
     check_repo
-    $DOTFILES_GIT pull origin main
+    $DOTFILES_GIT pull
     echo "Changes pulled from remote repository"
 }
 
