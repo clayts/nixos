@@ -5,7 +5,6 @@
     fd
     zoxide
     lnav
-    stow
     pciutils
     lshw
     git
