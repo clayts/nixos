@@ -38,7 +38,8 @@ in {
   environment.shellAliases = {
     edit = "$EDITOR";
     open = "xdg-open";
-    nixos-switch = "nh os switch $(readlink /etc/static/nixos)";
+    nixos-rebuild = "nh os switch $(readlink /etc/static/nixos) && sudo fc-cache -r";
+    nixos-clean = "nh clean all -k 3 && nix-store --optimise";
     l = "lsd --almost-all --long --git --group-dirs first --no-symlink --date relative";
     ls = "lsd --group-dirs first";
     lt = "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
