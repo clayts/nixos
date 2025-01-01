@@ -4,14 +4,15 @@
 
     ../../software
 
-    ../../software/devices/firmware-updates.nix
-    ../../software/devices/intel.nix
-    ../../software/devices/network.nix
-    ../../software/devices/printer.nix
-    ../../software/devices/sound.nix
-    ../../software/devices/ssd.nix
-    ../../software/devices/fingerprint-reader.nix
-    ../../software/devices/iio-sensors.nix
-    # ../../software/devices/meteor-lake-camera.nix
+    ../../configuration
+    ../../configuration/devices/firmware-updates.nix
+    ../../configuration/devices/intel.nix
+    ../../configuration/devices/network.nix
+    ../../configuration/devices/printer.nix
+    ../../configuration/devices/sound.nix
+    ../../configuration/devices/ssd.nix
+    ../../configuration/devices/fingerprint-reader.nix
+    ../../configuration/devices/iio-sensors.nix
+    # ../../configuration/devices/meteor-lake-camera.nix
   ];
 }

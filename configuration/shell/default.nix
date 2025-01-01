@@ -1,5 +1,25 @@
 {pkgs, ...}: let
-  hostfetch = pkgs.callPackage ./hostfetch {};
+  hostfetch = pkgs.writeShellScriptBin "hostfetch.sh" ''
+    logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
+
+    source /etc/os-release
+
+    loltext=$(echo "$logo" | ${pkgs.lolcat}/bin/lolcat -f -F 0.5)
+
+    hardware=$(cat /sys/devices/virtual/dmi/id/product_name)
+    os="$PRETTY_NAME"
+    kernel=$(uname -sr)
+
+    style_bold=$(${pkgs.ncurses}/bin/tput bold)
+    style_normal=$(${pkgs.ncurses}/bin/tput sgr0)
+
+    echo -n "$loltext" | head -n1 | tr -d '\n'
+    echo "''${style_bold}   Hardware: ''${style_normal}$hardware"
+    echo -n "$loltext" | head -n2 | tail -n1 | tr -d '\n'
+    echo "''${style_bold}   OS: ''${style_normal}$os"
+    echo -n "$loltext" | tail -n1 | tr -d '\n'
+    echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
+  '';
 in {
   # Fix sudo shlvl
   security.sudo.extraConfig = ''
@@ -32,10 +52,8 @@ in {
   };
   programs.direnv = {
     enable = true;
-    # silent = true;
     loadInNixShell = false;
     nix-direnv.enable = true;
-    enableZshIntegration = true;
   };
   programs.zsh = {
     enable = true;
@@ -59,10 +77,13 @@ in {
       # syntax highlighting
       source ${pkgs.zsh-f-sy-h}/share/zsh/site-functions/F-Sy-H.plugin.zsh
 
+      # direnv
+      eval "$(direnv hook zsh)"
+
       # skip in tty
       if [[ -n $DISPLAY ]];
       then
-        # shift keybindings
+        shift keybindings
         shift-arrow() {
           ((REGION_ACTIVE)) || zle set-mark-command
           zle $1
@@ -76,7 +97,7 @@ in {
         bindkey $terminfo[kRIT] shift-right
 
         # hostfetch
-        [[ $SHLVL -eq 1 ]] && ${hostfetch}/bin/hostfetch
+        [[ $SHLVL -eq 1 ]] && ${hostfetch}/bin/hostfetch.sh
 
 
         # Function to set window title
@@ -96,7 +117,7 @@ in {
 
         # powerlevel10k
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source ${./powerlevel10k/powerlevel10k.zsh}
+        source ${./powerlevel10k.zsh}
       fi
     '';
   };

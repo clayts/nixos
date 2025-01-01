@@ -67,38 +67,6 @@ in {
     };
   };
 
-  # TODO https://forum.manjaro.org/t/how-to-unload-a-module-prior-to-suspend-and-reload-it-afterwards/155058/4
-  #
-  # [Unit]
-  # Description=Disable and reenable xhci_pci module
-  # Before=sleep.target
-  # StopWhenUnneeded=yes
-
-  # [Service]
-  # User=root
-  # Type=oneshot
-  # RemainAfterExit=yes
-  # ExecStart=/usr/bin/rmmod xhci_pci
-  # ExecStart=/usr/bin/sleep 1
-  # ExecStop=/usr/bin/sleep 1
-  # ExecStop=/usr/bin/modprobe xhci_pci
-
-  # [Install]
-  # WantedBy=sleep.target
-
-  # systemd.services."camera-module-sleep-manager" = {
-  #   enable = true;
-  #   wantedBy = "sleep.target";
-  #   before = "sleep.target";
-  #   serviceConfig = {
-  #     StopWhenUnneeded = true;
-  #     User="root";
-  #     Type="oneshot";
-  #     RemainAfterExit=true;
-  #     ExecStart=["rmmod "]
-  #   };
-  # };
-
   # Wallpaper
   systemd.timers."wallpaper-switcher" = {
     enable = true;

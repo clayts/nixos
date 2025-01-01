@@ -97,23 +97,12 @@
       targetPkgs = pkgs:
         with pkgs; [
           openssl
-          alejandra
-          nixd
           zed-editor
         ];
       runScript = "zeditor";
     };
-  in
-    with pkgs; [
-      zed-editor-fhs
-      zed-editor-desktop-item
-
-      # HTML
-      python312Packages.weasyprint
-
-      # Git
-      gitg
-      git
-      gh
-    ];
+  in [
+    zed-editor-fhs
+    zed-editor-desktop-item
+  ];
 }
