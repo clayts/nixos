@@ -43,7 +43,6 @@ in {
     lt = "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
     cd = "z";
     pkg-tree = "function _pkg-tree() { lt $(nix build $* --print-out-paths --no-link); }; _pkg-tree";
-    sys-git = "git --work-tree=/ --git-dir=/git";
   };
   environment.sessionVariables = {
     EDITOR = "${pkgs.micro}/bin/micro";
