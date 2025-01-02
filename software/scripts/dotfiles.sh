@@ -132,7 +132,7 @@ upload() {
         $DOTFILES_GIT push
         echo "Changes pushed to remote repository"
     else
-        echo "No changes to push"
+        echo "No changes to upload"
     fi
 }
 
@@ -140,7 +140,7 @@ upload() {
 download() {
     check_repo
     $DOTFILES_GIT pull
-    echo "Changes pulled from remote repository"
+    echo "Changes have been downloaded from remote repository"
 }
 
 # Main command handler
@@ -162,9 +162,6 @@ case "$1" in
     "status")
         status
         ;;
-    "log")
-        log
-        ;;
     "upload")
         upload
         ;;
@@ -182,7 +179,6 @@ case "$1" in
         echo "  dotfiles untrack <file-path> [<file-path> ...]"
         echo "  dotfiles list"
         echo "  dotfiles status"
-        echo "  dotfiles log"
         echo "  dotfiles upload"
         echo "  dotfiles download"
         echo "  dotfiles git <git-command> [<git-args> ...]"
