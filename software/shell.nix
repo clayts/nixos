@@ -9,5 +9,6 @@
     lshw
     git
     gh
+    bat
   ];
 }
