@@ -14,7 +14,7 @@ if [ -z "$(git status --porcelain)" ]; then
 	# Otherwise,
     else
         # Commit these updates.
-		git commit -am "Update $(date)" || exit 1
+		git commit -am "update $(date)" || exit 1
 	fi
 # Otherwise,
 else
