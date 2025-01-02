@@ -9,8 +9,7 @@ nix flake update &&
 if [ -z "$(git status --porcelain)" ]; then
     # We're finished here.
 	echo "No update."
-# Otherwise,
 else
     # Commit these updates.
-	git commit -m "update $(date)" -- ./flake.lock || exit 1
+	git commit -m "update $(date)" -- ./flake.lock
 fi
