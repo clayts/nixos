@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Change directory to where this script is located
-cd $(dirname "$0") &&
+cd $(readlink /etc/nixos) &&
 
 # If git is clean,
 if [ -z "$(git status --porcelain)" ]; then
