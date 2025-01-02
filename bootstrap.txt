@@ -13,7 +13,7 @@
         cd nixos
 8. Scan hardware:
         sh -c "nixos-generate-config --root /mnt --show-hardware-config > hardware/<HOSTNAME>/hardware.nix"
-        nano hardware/machines/<HOSTNAME>/default.nix # Add extra hardware config
+        nano hardware/<HOSTNAME>/default.nix # Add extra hardware config
         git add .
         git commit -am "add <HOSTNAME>"
         git push
