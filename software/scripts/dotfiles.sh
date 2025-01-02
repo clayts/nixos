@@ -118,8 +118,8 @@ status() {
     $DOTFILES_GIT status
 }
 
-# Push changes to remote
-push() {
+# Upload changes to remote
+upload() {
     check_repo
 
     # Only add changes to already-tracked files
@@ -136,8 +136,8 @@ push() {
     fi
 }
 
-# Pull changes from remote
-pull() {
+# Download changes from remote
+download() {
     check_repo
     $DOTFILES_GIT pull
     echo "Changes pulled from remote repository"
@@ -165,11 +165,15 @@ case "$1" in
     "log")
         log
         ;;
-    "push")
-        push
+    "upload")
+        upload
         ;;
-    "pull")
-        pull
+    "download")
+        download
+        ;;
+    "git")
+        shift  # Remove 'git' from arguments
+        $DOTFILES_GIT "$@"  # Pass all remaining arguments to git
         ;;
     *)
         echo "Usage:"
@@ -179,8 +183,9 @@ case "$1" in
         echo "  dotfiles list"
         echo "  dotfiles status"
         echo "  dotfiles log"
-        echo "  dotfiles pull"
-        echo "  dotfiles push"
+        echo "  dotfiles upload"
+        echo "  dotfiles download"
+        echo "  dotfiles git <git-command> [<git-args> ...]"
         exit 1
         ;;
 esac
