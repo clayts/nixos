@@ -62,6 +62,8 @@ init() {
         $DOTFILES_GIT checkout
     fi
 
+    $DOTFILES_GIT push --set-upstream origin master
+
     echo "Dotfiles repository initialized successfully"
 }
 
