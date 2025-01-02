@@ -7,7 +7,6 @@
     font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0) + " " + "11"}";
     document-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0) + " " + "11"}";
     monospace-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0) + " " + "Semilight 11"}";
-    icon-theme = "Papirus";
     cursor-theme = "Bibata-Modern-Classic";
     gtk-theme = "adw-gtk3";
     gtk-enable-primary-paste = false; # Disable middle-click paste as it can accidentally paste stuff when scrolling
@@ -31,7 +30,6 @@ in {
 
     ## Theme
     bibata-cursors
-    papirus-icon-theme
     adw-gtk3
 
     ## Fonts
