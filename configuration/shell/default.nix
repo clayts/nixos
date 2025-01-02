@@ -42,7 +42,6 @@ in {
     ls = "lsd --group-dirs first";
     lt = "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
     cd = "z";
-    pkg-tree = "function _pkg-tree() { lt $(nix build $* --print-out-paths --no-link); }; _pkg-tree";
   };
   environment.sessionVariables = {
     EDITOR = "${pkgs.micro}/bin/micro";
