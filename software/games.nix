@@ -11,14 +11,14 @@
     sabaki = pkgs.makeDesktopItem {
       name = "sabaki";
       desktopName = "Sabaki";
-      icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/qgo.svg";
+      # icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/qgo.svg";
       categories = ["Game"];
       exec = let
         sabaki-appimg = builtins.fetchurl {
           url = "https://github.com/SabakiHQ/Sabaki/releases/download/v0.52.2/sabaki-v0.52.2-linux-x64.AppImage";
           sha256 = "sha256:0inlp5wb8719qygcac5268afim54ds7knffp765csrfdggja7q62";
         };
-      in ''sh -c "${pkgs.appimage-run}/bin/appimage-run ${sabaki-appimg}"'';
+      in ''sh -c "${(pkgs.appimage-run.override {extraPkgs = pkgs: [pkgs.xorg.libxshmfence];})}/bin/appimage-run ${sabaki-appimg}"'';
     };
 
     leela-zero-with-weights = let
