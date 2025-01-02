@@ -1,15 +1,10 @@
 {pkgs, ...}: let
-  # Helper function to read and convert a script file to a package
-  scriptToPackage = name:
+  # installs all scripts in ./scripts as packages
+  scriptPackages = map (name:
     pkgs.writeScriptBin
     (builtins.baseNameOf (pkgs.lib.removeSuffix ".sh" name))
-    (builtins.readFile (./scripts + "/${name}"));
-
-  # Get list of files in ./scripts directory
-  scriptFiles = builtins.attrNames (builtins.readDir ./scripts);
-
-  # Convert all script files to packages
-  scriptPackages = map scriptToPackage scriptFiles;
+    (builtins.readFile (./scripts + "/${name}")))
+  (builtins.attrNames (builtins.readDir ./scripts));
 in {
   imports = [
     ./firefox.nix
