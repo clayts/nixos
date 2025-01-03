@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd $(readlink /etc/nixos) &&
+cd /etc/nixos &&
 
 # Update flake.lock
 nix flake update &&
