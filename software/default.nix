@@ -12,7 +12,6 @@ in {
     ./desktop.nix
     ./shell.nix
     ./boxes.nix
-    ./zed.nix
   ];
   environment.systemPackages = scriptPackages;
 }
