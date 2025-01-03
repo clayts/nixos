@@ -1,4 +1,4 @@
-{hostname, ...}: {
+{...}: {
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   services.avahi = {
@@ -6,7 +6,6 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-  networking.hostName = "${hostname}";
 
   # Workaround for issues getting ipv4 address on certain wireless networks
   # networking.networkmanager.dhcp = "dhcpcd";
