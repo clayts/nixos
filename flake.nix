@@ -11,6 +11,7 @@
     in {
       default = pkgs.mkShell {
         packages = with pkgs; [
+          # devShell packages
           alejandra
           nixd
         ];
