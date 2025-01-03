@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    zed-editor
     ghostty
     loupe
     file-roller
