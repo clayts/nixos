@@ -36,3 +36,5 @@
   #     ExecStart=["rmmod "]
   #   };
   # };
+- Check out:
+    - setzer: latex editor
