@@ -6,7 +6,7 @@ cd /etc/nixos &&
 nix flake update &&
 
 # If nothing changed,
-if [ -z "$(git status --porcelain)" ]; then
+if [ -z "$(git status --porcelain ./flake.lock)" ]; then
     # We're finished here.
 	echo "No update."
 else
