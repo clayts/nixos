@@ -12,6 +12,7 @@ in {
     ./desktop.nix
     ./shell.nix
     ./boxes.nix
+    ./ai.nix
   ];
   environment.systemPackages = scriptPackages;
 }
