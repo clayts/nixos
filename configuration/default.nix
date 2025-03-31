@@ -106,6 +106,6 @@
   users.users."user" = {
     description = "User";
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 }

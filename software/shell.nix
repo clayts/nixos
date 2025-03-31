@@ -10,5 +10,7 @@
     git
     gh
     bat
+    alejandra
+    nixd
   ];
 }

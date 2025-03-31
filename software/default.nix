@@ -11,8 +11,9 @@ in {
     ./games.nix
     ./desktop.nix
     ./shell.nix
-    ./boxes.nix
-    ./ai.nix
+    ./zed-fhs.nix
+    # ./boxes.nix
+    # ./ai.nix
   ];
   environment.systemPackages = scriptPackages;
 }
