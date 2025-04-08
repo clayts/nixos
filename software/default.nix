@@ -8,7 +8,7 @@
 in {
   imports = [
     ./firefox.nix
-    ./games.nix
+    # ./games.nix
     ./desktop.nix
     ./shell.nix
     ./zed-fhs.nix
