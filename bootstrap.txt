@@ -12,6 +12,7 @@
         git clone https://github.com/clayts/nixos
         cd nixos
 8. Scan hardware:
+        mkdir hardware/<HOSTNAME>
         nixos-generate-config --root /mnt --show-hardware-config > hardware/<HOSTNAME>/hardware.nix
         nano hardware/<HOSTNAME>/default.nix # Add extra hardware config
         git add .
