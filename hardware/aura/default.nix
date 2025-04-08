@@ -1,1 +1,1 @@
-{...}:{imports=[./hardware.nix];}
+{...}:{imports=[./hardware.nix ../../software ../../configuration];}
