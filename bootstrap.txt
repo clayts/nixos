@@ -15,7 +15,7 @@
         mkdir hardware/<HOSTNAME>
         nixos-generate-config --root /mnt --show-hardware-config > hardware/<HOSTNAME>/hardware.nix
         nano hardware/<HOSTNAME>/default.nix # Add extra hardware config
-        # at minimum: {...}:{imports=[./hardware.nix];}
+        # at minimum: {...}:{imports=[./hardware.nix ../../software ../../configuration];}
         git add .
         git commit -am "add <HOSTNAME>"
         git push
