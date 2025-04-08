@@ -20,5 +20,5 @@
         git commit -am "add <HOSTNAME>"
         git push
 16. Install:
-        sudo nixos-install --flake .<HOSTNAME> --root /mnt
+        sudo nixos-install --flake .#<HOSTNAME> --root /mnt
 17. Reboot
