@@ -8,6 +8,10 @@
     ./desktop
   ];
 
+  # Hostname
+  networking.hostName = "aura";
+
+  # Version
   system.stateVersion = "24.11";
 
   # Boot

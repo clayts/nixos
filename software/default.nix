@@ -27,7 +27,6 @@
     celluloid
     gnome-firmware
     gitg
-    zed-editor
   ];
   shellPackages = with pkgs; [
     fzf
@@ -44,6 +43,7 @@ in {
   imports = [
     ./firefox.nix
     ./steam.nix
+    ./zeditor.nix
     # ./boxes.nix
     # ./ai.nix
   ];

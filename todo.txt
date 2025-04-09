@@ -6,3 +6,4 @@
     - setzer: latex editor
     - LMMS: music studio
     - gcompris: games for 2-10 year olds
+- check out zed's auto install packages

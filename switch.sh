@@ -1,2 +1,2 @@
 #!/bin/sh
-nh os switch $(dirname "$0")
+nh os switch -H os $(dirname "$0")
