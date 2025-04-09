@@ -6,7 +6,16 @@
     (builtins.readFile (./scripts + "/${name}")))
   (builtins.attrNames (builtins.readDir ./scripts));
   desktopPackages = with pkgs; [
-    ghostty
+    (pkgs.symlinkJoin {
+      name = "ghostty-no-stderr";
+      paths = [pkgs.ghostty];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/ghostty \
+          --run 'exec "$@" 2> /dev/null' \
+          --argv0 ""
+      '';
+    })
     loupe
     file-roller
     gnome-calculator
@@ -17,7 +26,7 @@
     celluloid
     gnome-firmware
     gitg
-    # zed-editor
+    zed-editor
   ];
   shellPackages = with pkgs; [
     fzf
@@ -30,14 +39,11 @@
     git
     gh
     bat
-    alejandra
-    nixd
   ];
 in {
   imports = [
     ./firefox.nix
     ./steam.nix
-    ./zed-fhs.nix
     # ./boxes.nix
     # ./ai.nix
   ];

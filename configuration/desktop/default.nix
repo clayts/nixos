@@ -4,9 +4,9 @@
   ...
 }: let
   interface = {
-    font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0) + " " + "11"}";
-    document-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0) + " " + "11"}";
-    monospace-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0) + " " + "Semilight 11"}";
+    font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0) + " " + "10"}";
+    document-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0) + " " + "10"}";
+    monospace-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0) + " " + "10"}";
     cursor-theme = "Bibata-Modern-Classic";
     gtk-theme = "adw-gtk3";
     gtk-enable-primary-paste = false; # Disable middle-click paste as it can accidentally paste stuff when scrolling
@@ -31,10 +31,14 @@ in {
     ## Theme
     bibata-cursors
     adw-gtk3
+  ];
 
-    ## Fonts
-    nerd-fonts.caskaydia-cove
+  ## Fonts
+  fonts.packages = with pkgs; [
+    # nerd-fonts.caskaydia-cove
+    nerd-fonts.zed-mono
     noto-fonts
+    adwaita-fonts
   ];
 
   # GNOME
@@ -58,9 +62,9 @@ in {
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = ["Noto Sans"];
+      sansSerif = ["Adwaita Sans"];
       serif = ["Noto Serif"];
-      monospace = ["CaskaydiaCove Nerd Font"];
+      monospace = ["ZedMono"];
     };
   };
 
@@ -125,6 +129,9 @@ in {
           "org.gnome.Nautilus.desktop"
         ];
         "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
+
+        "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
+
         "org/gnome/desktop/interface" = interface;
         "org/gnome/desktop/background".picture-uri = "/tmp/wallpaper.jpg";
         "org/gnome/evolution-data-server.calendar" = {
