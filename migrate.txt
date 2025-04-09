@@ -1,21 +1,18 @@
 1. Partition the disk if necessary.
 2. Mount the destination root filesystem at /mnt:
-        sudo mount /dev/disk/by-partlabel/linux-root /mnt
+        sudo mount /dev/disk/by-partlabel/root /mnt
 3. Mount the boot filesystem at /mnt/boot
         sudo mkdir /mnt/boot
         sudo mount -o umask=077 /dev/disk/by-partlabel/boot /mnt/boot
 4. Activate swap, if necessary:
-        sudo swapon /dev/disk/by-partlabel/linux-swap
+        sudo swapon /dev/disk/by-partlabel/swap
 5. Mount other partitions, if necessary.
 7. Get this flake:
         nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgs#github-cli -- auth login
         git clone https://github.com/clayts/nixos
         cd nixos
 8. Scan hardware:
-        mkdir hardware/<HOSTNAME>
-        nixos-generate-config --root /mnt --show-hardware-config > hardware/<HOSTNAME>/hardware.nix
-        nano hardware/<HOSTNAME>/default.nix # Add extra hardware config
-        # at minimum: {...}:{imports=[./hardware.nix ../../software ../../configuration];}
+        nixos-generate-config --root /mnt --show-hardware-config > hardware/base.nix
         git add .
         git commit -am "add <HOSTNAME>"
         git push
