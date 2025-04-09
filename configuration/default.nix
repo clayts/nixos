@@ -14,6 +14,7 @@
   boot = {
     ## Kernel
     kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_6_13;
     # kernelPackages = pkgs.linuxPackages;
     kernelParams = [
       "quiet"

@@ -3,6 +3,7 @@
     grand-theft-focus
     appindicator
     alphabetical-app-grid
+    just-perfection
   ];
 in {
   environment.systemPackages = extensions;
@@ -15,6 +16,10 @@ in {
           extension: extension.extensionUuid
         )
         extensions;
+      settings."org/gnome/shell/extensions/just-perfection" = {
+        panel = false;
+        panel-in-overview = true;
+      };
     }
   ];
 }

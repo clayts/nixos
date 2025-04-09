@@ -96,6 +96,7 @@ in {
           rm $temp && echo "Failed" && exit 1
       )
     '';
+    enable = true;
     serviceConfig = {
       Type = "oneshot";
       User = "root";
