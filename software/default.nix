@@ -22,6 +22,7 @@
     gnome-system-monitor
     gnome-characters
     gnome-calendar
+    gnome-logs
     nautilus
     celluloid
     gnome-firmware
@@ -33,7 +34,6 @@
     lsd
     fd
     zoxide
-    lnav
     pciutils
     lshw
     git

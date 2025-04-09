@@ -36,9 +36,9 @@ in {
   ## Fonts
   fonts.packages = with pkgs; [
     # nerd-fonts.caskaydia-cove
-    nerd-fonts.zed-mono
     noto-fonts
     adwaita-fonts
+    ibm-plex
   ];
 
   # GNOME
@@ -54,7 +54,7 @@ in {
     };
   };
 
-  # Remote bloat
+  # Remove bloat
   services.xserver.excludePackages = with pkgs; [xterm];
   environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-screenshot];
 
@@ -62,9 +62,9 @@ in {
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = ["Adwaita Sans"];
-      serif = ["Noto Serif"];
-      monospace = ["ZedMono"];
+      sansSerif = ["Adwaita Sans" "Noto Sans"];
+      serif = ["IBM Plex Serif" "Noto Serif"];
+      monospace = ["IBM Plex Mono" "Noto Mono"];
     };
   };
 

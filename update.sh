@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /etc/nixos &&
+cd $(dirname "$0") &&
 
 # Update flake.lock
 nix flake update &&
