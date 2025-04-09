@@ -11,6 +11,18 @@
     ./iio-sensors.nix
   ];
 
+  # hardware.firmware = let
+  #   linux-firmware-c1a77 = pkgs.linux-firmware.overrideAttrs (oldAttrs: {
+  #     src = pkgs.fetchgit {
+  #       url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
+  #       rev = "c1a774f36657e30e28a83002a8ebf5add44e02aa";
+  #       sha256 = "sha256-aQdEl9+7zbNqWSII9hjRuPePvSfWVql5u5TIrGsa+Ao=";
+  #     };
+  #   });
+  # in [linux-firmware-c1a77];
+
+  hardware.enableAllFirmware = true;
+
   environment.sessionVariables = let
     alsa-ucm-conf-30989 = pkgs.alsa-ucm-conf.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -23,18 +35,6 @@
   in {
     ALSA_CONFIG_UCM2 = "${alsa-ucm-conf-30989}/share/alsa/ucm2";
   };
-
-  # hardware.firmware = let
-  #   linux-firmware-c1a77 = pkgs.linux-firmware.overrideAttrs (oldAttrs: {
-  #     src = pkgs.fetchgit {
-  #       url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
-  #       rev = "c1a774f36657e30e28a83002a8ebf5add44e02aa";
-  #       sha256 = "sha256-aQdEl9+7zbNqWSII9hjRuPePvSfWVql5u5TIrGsa+Ao=";
-  #     };
-  #   });
-  # in [linux-firmware-c1a77];
-
-  hardware.enableAllFirmware = true;
 
   environment.etc."libinput/local-overrides.quirks".text = pkgs.lib.mkForce ''
     # The ThinkPad X9 15 Gen 1 Forcepad touchpad is not
