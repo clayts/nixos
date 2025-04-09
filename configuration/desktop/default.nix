@@ -38,7 +38,7 @@ in {
     # nerd-fonts.caskaydia-cove
     noto-fonts
     adwaita-fonts
-    ibm-plex
+    cascadia-code
   ];
 
   # GNOME
@@ -63,8 +63,8 @@ in {
     enable = true;
     defaultFonts = {
       sansSerif = ["Adwaita Sans" "Noto Sans"];
-      serif = ["IBM Plex Serif" "Noto Serif"];
-      monospace = ["IBM Plex Mono" "Noto Mono"];
+      serif = ["Noto Serif"];
+      monospace = ["Cascadia Code" "Noto Mono"];
     };
   };
 
@@ -129,7 +129,8 @@ in {
           "org.gnome.Nautilus.desktop"
         ];
         "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
-
+        "org/gnome/desktop/peripherals/touchpad".tap-to-click =
+          false;
         "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
 
         "org/gnome/desktop/interface" = interface;
