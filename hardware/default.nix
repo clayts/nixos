@@ -1,16 +1,14 @@
 {pkgs, ...}: {
   imports = [
-    ./hardware.nix
-    ../../software
-    ../../configuration
-    ../../configuration/devices/firmware-updates.nix
-    ../../configuration/devices/intel.nix
-    ../../configuration/devices/network.nix
-    ../../configuration/devices/printer.nix
-    ../../configuration/devices/sound.nix
-    ../../configuration/devices/ssd.nix
-    ../../configuration/devices/fingerprint-reader.nix
-    ../../configuration/devices/iio-sensors.nix
+    ./base.nix
+    ./firmware-updates.nix
+    ./intel.nix
+    ./network.nix
+    ./printer.nix
+    ./sound.nix
+    ./ssd.nix
+    ./fingerprint-reader.nix
+    ./iio-sensors.nix
   ];
 
   environment.sessionVariables = let
