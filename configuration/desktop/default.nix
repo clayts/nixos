@@ -11,7 +11,7 @@
     gtk-theme = "adw-gtk3";
     gtk-enable-primary-paste = false; # Disable middle-click paste as it can accidentally paste stuff when scrolling
     enable-hot-corners = false;
-    font-antialiasing = "rgba";
+    font-antialiasing = "greyscale";
     font-hinting = "full";
   };
 in {
@@ -132,7 +132,6 @@ in {
         "org/gnome/desktop/peripherals/touchpad".tap-to-click =
           false;
         "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
-
         "org/gnome/desktop/interface" = interface;
         "org/gnome/desktop/background".picture-uri = "/tmp/wallpaper.jpg";
         "org/gnome/evolution-data-server.calendar" = {
