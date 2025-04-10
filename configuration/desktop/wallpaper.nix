@@ -1,5 +1,5 @@
-{...}:{
- systemd.timers."wallpaper-switcher" = {
+{pkgs, ...}: {
+  systemd.timers."wallpaper-switcher" = {
     enable = true;
     wantedBy = ["timers.target"];
     timerConfig = {
