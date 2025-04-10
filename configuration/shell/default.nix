@@ -6,7 +6,7 @@
 
     loltext=$(echo "$logo" | ${pkgs.lolcat}/bin/lolcat -f -F 0.5)
 
-    hardware=$(cat /sys/devices/virtual/dmi/id/product_name)
+    hardware=$(cat /sys/devices/virtual/dmi/id/product_version)
     os="$PRETTY_NAME"
     kernel=$(uname -sr)
 
