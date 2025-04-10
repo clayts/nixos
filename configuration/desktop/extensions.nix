@@ -19,6 +19,12 @@ in {
       settings."org/gnome/shell/extensions/just-perfection" = {
         panel = false;
         panel-in-overview = true;
+        activities-button = false;
+        quick-settings-dark-mode = false;
+        quick-settings-night-light = false;
+        quick-settings-airplane-mode = false;
+        window-preview-caption = false;
+        background-menu = false;
       };
     }
   ];
