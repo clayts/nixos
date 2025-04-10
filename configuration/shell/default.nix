@@ -1,26 +1,4 @@
-{pkgs, ...}: let
-  hostfetch = pkgs.writeShellScriptBin "hostfetch.sh" ''
-    logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
-
-    source /etc/os-release
-
-    loltext=$(echo "$logo" | ${pkgs.lolcat}/bin/lolcat -f -F 0.5)
-
-    hardware=$(cat /sys/devices/virtual/dmi/id/product_version)
-    os="$PRETTY_NAME"
-    kernel=$(uname -sr)
-
-    style_bold=$(${pkgs.ncurses}/bin/tput bold)
-    style_normal=$(${pkgs.ncurses}/bin/tput sgr0)
-
-    echo -n "$loltext" | head -n1 | tr -d '\n'
-    echo "''${style_bold}   Hardware: ''${style_normal}$hardware"
-    echo -n "$loltext" | head -n2 | tail -n1 | tr -d '\n'
-    echo "''${style_bold}   OS: ''${style_normal}$os"
-    echo -n "$loltext" | tail -n1 | tr -d '\n'
-    echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
-  '';
-in {
+{pkgs, ...}: {
   # Fix sudo shlvl
   security.sudo.extraConfig = ''
     Defaults:root,%wheel env_keep+=SHLVL
@@ -58,7 +36,29 @@ in {
     vteIntegration = true;
     autosuggestions.enable = true;
     histFile = "$HOME/.config/zsh/history";
-    interactiveShellInit = ''
+    interactiveShellInit = let
+      hostfetch = pkgs.writeShellScriptBin "hostfetch.sh" ''
+        logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
+
+        source /etc/os-release
+
+        loltext=$(echo "$logo" | ${pkgs.lolcat}/bin/lolcat -f -F 0.5)
+
+        hardware=$(cat /sys/devices/virtual/dmi/id/product_version)
+        os="$PRETTY_NAME"
+        kernel=$(uname -sr)
+
+        style_bold=$(${pkgs.ncurses}/bin/tput bold)
+        style_normal=$(${pkgs.ncurses}/bin/tput sgr0)
+
+        echo -n "$loltext" | head -n1 | tr -d '\n'
+        echo "''${style_bold}   Hardware: ''${style_normal}$hardware"
+        echo -n "$loltext" | head -n2 | tail -n1 | tr -d '\n'
+        echo "''${style_bold}   OS: ''${style_normal}$os"
+        echo -n "$loltext" | tail -n1 | tr -d '\n'
+        echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
+      '';
+    in ''
       # zoxide
       eval "$(zoxide init zsh)"
 
