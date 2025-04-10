@@ -11,5 +11,5 @@ if [ -z "$(git status --porcelain ./flake.lock)" ]; then
 	echo "No update." && exit 1
 else
     # Commit these updates.
-	git commit ./flake.lock -m "update $(date)"
+	git commit ./flake.lock -m "Update $(date)"
 fi
