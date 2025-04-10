@@ -1,3 +1,13 @@
+# To Do
+- Cheese
+- Howdy
+- Custom boot logo
+- Make firefox initial window size constant
+- Check out:
+    - setzer: latex editor
+    - LMMS: music studio
+    - gcompris: games for 2-10 year olds
+
 # Migration
 1. Partition the disk if necessary.
 2. Mount the destination root filesystem at `/mnt`:
@@ -25,13 +35,3 @@
 
         sudo nixos-install --flake .#os --root /mnt
 17. Reboot
-
-# To Do
-- Cheese
-- Howdy
-- Custom boot logo
-- Make firefox initial window size constant
-- Check out:
-    - setzer: latex editor
-    - LMMS: music studio
-    - gcompris: games for 2-10 year olds
