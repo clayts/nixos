@@ -107,12 +107,22 @@ in {
     };
   };
 
+  # Fixes various fingerprint bugs and issues
+  security.pam.services = {
+    gdm-fingerprint.fprintAuth = true;
+    login.fprintAuth = false;
+  };
+
   # Dconf
   programs.dconf.enable = true;
+
   programs.dconf.profiles.gdm.databases = [
     {
       settings = {
         "org/gnome/desktop/interface" = interface;
+
+        # Fixes various fingerprint bugs and issues
+        "org/gnome/login-screen".enable-fingerprint-authentication = false;
       };
     }
   ];

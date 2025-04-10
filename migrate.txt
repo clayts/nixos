@@ -12,7 +12,7 @@
         git clone https://github.com/clayts/nixos
         cd nixos
 8. Scan hardware:
-        nixos-generate-config --root /mnt --show-hardware-config > hardware/base.nix
+        nixos-generate-config --root /mnt --show-hardware-config > hardware/system.nix
         git add .
         git commit -am "migration"
         git push

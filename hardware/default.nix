@@ -1,48 +1,36 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
-    ./base.nix
-    ./firmware-updates.nix
-    ./intel.nix
-    ./network.nix
-    ./printer.nix
-    ./sound.nix
-    ./ssd.nix
-    ./fingerprint-reader.nix
-    ./iio-sensors.nix
+    ./system.nix
+    ./arc.nix
+    ./fixes.nix
   ];
 
-  # hardware.firmware = let
-  #   linux-firmware-c1a77 = pkgs.linux-firmware.overrideAttrs (oldAttrs: {
-  #     src = pkgs.fetchgit {
-  #       url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
-  #       rev = "c1a774f36657e30e28a83002a8ebf5add44e02aa";
-  #       sha256 = "sha256-aQdEl9+7zbNqWSII9hjRuPePvSfWVql5u5TIrGsa+Ao=";
-  #     };
-  #   });
-  # in [linux-firmware-c1a77];
+  services.fprintd.enable = true;
+  hardware.sensor.iio.enable = true;
+  services.thermald.enable = true;
+  services.fstrim.enable = true;
 
-  hardware.enableAllFirmware = true;
-
-  environment.sessionVariables = let
-    alsa-ucm-conf-30989 = pkgs.alsa-ucm-conf.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "alsa-project";
-        repo = "alsa-ucm-conf";
-        rev = "30989bd0c2aa3f9f4b6f5e393397b39678717f45"; # or specific commit/tag
-        hash = "sha256-cFYEsavUeD6ZyZ/UqyjZnOcSJuOaSBe6sqEH2wOQddc=";
-      };
-    });
-  in {
-    ALSA_CONFIG_UCM2 = "${alsa-ucm-conf-30989}/share/alsa/ucm2";
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 
-  environment.etc."libinput/local-overrides.quirks".text = pkgs.lib.mkForce ''
-    # The ThinkPad X9 15 Gen 1 Forcepad touchpad is not
-    # detected as a pressure pad
-    [Lenovo ThinkPad X9 15 Gen 1]
-    MatchName=*GXTP5100*
-    MatchDMIModalias=dmi:*svnLENOVO:*pvrThinkPadX9-15Gen1*:*
-    MatchUdevType=touchpad
-    ModelPressurePad=1
-  '';
+  services.printing.enable = true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # # Fix sound on Noita
+  # services.pipewire.enable = false;
+  # services.gnome.gnome-remote-desktop.enable = false;
+  # hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.support32Bit = true;
 }

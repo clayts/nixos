@@ -82,6 +82,10 @@
     '';
   };
 
+  # Firmware
+  services.fwupd.enable = true;
+  hardware.enableAllFirmware = true;
+
   # Remove bloat
   documentation.nixos.enable = false;
 
