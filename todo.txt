@@ -1,8 +1,0 @@
-- Cheese
-- Howdy
-- Custom boot logo
-- Make firefox initial window size constant
-- Check out:
-    - setzer: latex editor
-    - LMMS: music studio
-    - gcompris: games for 2-10 year olds
