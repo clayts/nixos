@@ -103,7 +103,7 @@ untrack() {
 
     for file in "$@"; do
         FILE_PATH=$(realpath "$file")
-        $DOTFILES_GIT rm --cached "$FILE_PATH"
+        $DOTFILES_GIT rm -r --cached "$FILE_PATH"
         echo "Stopped tracking: $FILE_PATH"
     done
 }
