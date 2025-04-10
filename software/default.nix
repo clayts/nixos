@@ -23,6 +23,7 @@
     gnome-characters
     gnome-calendar
     gnome-logs
+    eyedropper
     nautilus
     celluloid
     gnome-firmware
