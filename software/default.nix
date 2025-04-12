@@ -24,19 +24,15 @@
     gh
     bat
   ];
-  scriptPackages = map (name:
-    pkgs.writeScriptBin
-    (builtins.baseNameOf (pkgs.lib.removeSuffix ".sh" name))
-    (builtins.readFile (./scripts + "/${name}")))
-  (builtins.attrNames (builtins.readDir ./scripts));
 in {
   imports = [
     ./firefox.nix
     ./steam.nix
     ./zeditor.nix
     ./ghostty.nix
+    ./scripts.nix
     # ./ollama.nix
     # ./boxes.nix
   ];
-  environment.systemPackages = scriptPackages ++ shellPackages ++ desktopPackages;
+  environment.systemPackages = shellPackages ++ desktopPackages;
 }
