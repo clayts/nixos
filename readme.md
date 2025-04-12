@@ -23,14 +23,16 @@
 5. Mount other partitions, if necessary.
 7. Get this flake:
 
-        nix --extra-experimental-features nix-command --extra-experimental-features flakes run nixpkgs#github-cli -- auth login
-        git clone https://github.com/clayts/nixos
-        cd nixos
+        nix \
+        --extra-experimental-features nix-command \
+        --extra-experimental-features flakes \
+        run nixpkgs#github-cli -- auth login
+        git clone https://github.com/clayts/nixos && cd nixos
 8. Scan hardware and push changes so they aren't lost:
 
-        nixos-generate-config --root /mnt --show-hardware-config > hardware/system.nix
-        git commit -am "migration"
-        git push
+        nixos-generate-config --root /mnt \
+        --show-hardware-config > hardware/system.nix
+        git commit -am "migration" && git push
 16. Install:
 
         sudo nixos-install --flake .#os --root /mnt
