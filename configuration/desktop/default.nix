@@ -103,12 +103,14 @@ in {
           workspaces-only-on-primary = true;
           center-new-windows = true;
         };
-        "org/gnome/settings-daemon/plugins/media-keys".play = ["<Super>p"];
+        "org/gnome/settings-daemon/plugins/media-keys".play = ["Favorites"];
         "org/gnome/desktop/wm/keybindings" = {
           toggle-fullscreen = ["<Super>f"];
           close = ["<Super>q"];
           switch-windows = ["<Super>Tab"];
           switch-windows-backward = ["<Shift><Super>Tab"];
+          switch-applications = ["<Alt>Tab"];
+          switch-applications-backward = ["<Shift><Alt>Tab"];
         };
       };
     }
