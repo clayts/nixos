@@ -12,6 +12,10 @@
     celluloid
     gnome-firmware
     gitg
+    iotas
+    errands
+    papers
+    libreoffice
   ];
   shellPackages = with pkgs; [
     fzf
@@ -31,6 +35,7 @@ in {
     ./zeditor.nix
     ./ghostty.nix
     ./scripts.nix
+    ./iotas.nix
     # ./ollama.nix
     # ./boxes.nix
   ];

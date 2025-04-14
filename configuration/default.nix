@@ -56,11 +56,12 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  environment.systemPackages = with pkgs; [
-    aspellDicts.en
-    aspellDicts.en-computers
-    aspellDicts.en-science
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   aspellDicts.en
+  #   aspellDicts.en-computers
+  #   aspellDicts.en-science
+  # ];
+  environment.systemPackages = [(pkgs.aspellWithDicts (dicts: [dicts.en]))];
 
   # Nix
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

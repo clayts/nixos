@@ -74,10 +74,19 @@ in {
   programs.dconf.profiles.user.databases = [
     {
       settings = {
-        "org/gnome/desktop/app-folders" = {folder-children = ["Games"];};
+        "org/gnome/desktop/app-folders" = {folder-children = ["Games" "LibreOffice" "System"];};
+        "org/gnome/desktop/app-folders/folders/System" = {
+          name = "System";
+          categories = ["System"];
+          apps = ["org.gnome.Extensions.desktop" "org.gnome.Firmware.desktop" "org.gnome.Settings.desktop"];
+        };
         "org/gnome/desktop/app-folders/folders/Games" = {
           name = "Games";
           categories = ["Game"];
+        };
+        "org/gnome/desktop/app-folders/folders/LibreOffice" = {
+          name = "LibreOffice";
+          apps = ["startcenter.desktop" "base.desktop" "calc.desktop" "draw.desktop" "impress.desktop" "math.desktop" "writer.desktop"];
         };
         "org/gnome/shell".favorite-apps = [
           "firefox.desktop"
@@ -92,10 +101,8 @@ in {
         "org/gnome/evolution-data-server.calendar" = {
           notify-enable-audio = false; # Silences annoying daily beeps
         };
-        "org/gnome/TextEditor" = {
-          restore-session =
-            false;
-        };
+        "org/gnome/gitlab/cheywood/Iotas".editor-header-bar-visibility = "auto-hide";
+        "org/gnome/gitlab/cheywood/Iotas".editor-theme = "iotas-alpha-bold";
 
         "org/gnome/mutter" = {
           dynamic-workspaces = true;
