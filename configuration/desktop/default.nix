@@ -23,14 +23,14 @@ in {
 
   # Packages
   environment.systemPackages = with pkgs; [
-    ## Hide CUPS
+    # Hide CUPS
     (pkgs.makeDesktopItem {
       name = "cups";
       desktopName = "";
       noDisplay = true;
     })
 
-    ## Theme
+    # Theme
     bibata-cursors
     adw-gtk3
   ];
@@ -93,16 +93,14 @@ in {
           "org.gnome.Nautilus.desktop"
         ];
         "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
-        "org/gnome/desktop/peripherals/touchpad".tap-to-click =
-          false;
+        "org/gnome/desktop/peripherals/touchpad".speed = 0.1;
+        "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
         "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
         "org/gnome/desktop/interface" = interface;
         "org/gnome/desktop/background".picture-uri = "/tmp/wallpaper.jpg";
-        "org/gnome/evolution-data-server.calendar" = {
-          notify-enable-audio = false; # Silences annoying daily beeps
-        };
-        "org/gnome/gitlab/cheywood/Iotas".editor-header-bar-visibility = "auto-hide";
-        "org/gnome/gitlab/cheywood/Iotas".editor-theme = "iotas-alpha-bold";
+        "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
+        # "org/gnome/gitlab/cheywood/Iotas".editor-header-bar-visibility = "auto-hide";
+        # "org/gnome/gitlab/cheywood/Iotas".editor-theme = "iotas-alpha-bold";
 
         "org/gnome/mutter" = {
           dynamic-workspaces = true;
