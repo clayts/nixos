@@ -51,6 +51,7 @@
 
 - Cheese
 - Howdy
+- Switch back to HM?
 - Check out:
 	- setzer: latex editor
   - LMMS: music studio
