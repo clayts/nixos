@@ -5,28 +5,12 @@
     gnome-calculator
     gnome-system-monitor
     gnome-characters
-
-    gnome-calendar
-    # # Allow using Google as calendar
-    # (pkgs.makeDesktopItem {
-    #   name = "com.google.Calendar";
-    #   desktopName = "Google Calendar";
-    #   noDisplay = true;
-    #   mimeTypes = ["text/calendar"];
-    #   # dbusActivatable = true;
-    #   exec = "xdg-open https://www.google.com/calendar";
-    # })
-
     gnome-logs
     eyedropper
     nautilus
     celluloid
     gnome-firmware
     gitg
-    apostrophe
-    errands
-    papers
-    libreoffice
   ];
   shellPackages = with pkgs; [
     fzf
@@ -46,7 +30,7 @@ in {
     ./zeditor.nix
     ./ghostty.nix
     ./scripts.nix
-    # ./iotas.nix
+    ./google-calendar.nix
     # ./ollama.nix
     # ./boxes.nix
   ];

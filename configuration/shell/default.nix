@@ -36,50 +36,40 @@
     vteIntegration = true;
     autosuggestions.enable = true;
     histFile = "$HOME/.config/zsh/history";
-    interactiveShellInit = let
-      hostfetch = pkgs.writeShellScriptBin "hostfetch.sh" ''
-        logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
-
-        source /etc/os-release
-
-        loltext=$(echo "$logo" | ${pkgs.lolcat}/bin/lolcat -f -F 0.5)
-
-        hardware=$(cat /sys/devices/virtual/dmi/id/product_version)
-        os="$PRETTY_NAME"
-        kernel=$(uname -sr)
-
-        style_bold=$(${pkgs.ncurses}/bin/tput bold)
-        style_normal=$(${pkgs.ncurses}/bin/tput sgr0)
-
-        echo -n "$loltext" | head -n1 | tr -d '\n'
-        echo "''${style_bold}   Hardware: ''${style_normal}$hardware"
-        echo -n "$loltext" | head -n2 | tail -n1 | tr -d '\n'
-        echo "''${style_bold}   OS: ''${style_normal}$os"
-        echo -n "$loltext" | tail -n1 | tr -d '\n'
-        echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
-      '';
-    in ''
+    interactiveShellInit = ''
       # zoxide
+      # echo "INIT zoxide"
       eval "$(zoxide init zsh)"
 
       # fzf-tab
+      # echo "INIT fzf-tab"
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS} # set list-colors to enable filename colorizing
 
       # substring search
+      # echo "INIT substring search"
       source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
       bindkey "''${terminfo[kcuu1]}" history-substring-search-up
       bindkey "''${terminfo[kcud1]}" history-substring-search-down
 
       # syntax highlighting
+      # echo "INIT syntax highlighting"
       source ${pkgs.zsh-f-sy-h}/share/zsh/site-functions/F-Sy-H.plugin.zsh
 
       # direnv
+      # echo "INIT direnv"
       eval "$(direnv hook zsh)"
 
       # skip in tty
       if [[ -n $DISPLAY ]];
       then
+
+        # hostfetch
+        # echo "INIT hostfetch"
+        [[ $SHLVL -eq 1 ]] && hostfetch
+
+        # keybindings
+        # echo "INIT keybindings"
         shift keybindings
         shift-arrow() {
           ((REGION_ACTIVE)) || zle set-mark-command
@@ -93,27 +83,30 @@
         bindkey $terminfo[kLFT] shift-left
         bindkey $terminfo[kRIT] shift-right
 
-        # hostfetch
-        [[ $SHLVL -eq 1 ]] && ${hostfetch}/bin/hostfetch.sh
-
-
         # Function to set window title
+        # echo "INIT set_win_title()"
         function set_win_title() {
             print -Pn "\e]0;$1\a"
         }
 
         # Preexec hook to set title before executing command
+        # echo "INIT preexec()"
         function preexec() {
             set_win_title "$1"
         }
 
         # Precmd hook to reset title after command completes
+        # echo "INIT precmd()"
         function precmd() {
             set_win_title "zsh"
         }
 
         # powerlevel10k
+        # echo "INIT powerlevel10k"
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
+        # powerlevel10k theme
+        # echo "INIT powerlevel10k theme"
         source ${./powerlevel10k.zsh}
       fi
     '';
