@@ -1,5 +1,4 @@
-{pkgs,...}:{
-
+{...}: {
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
@@ -29,4 +28,5 @@
       window-width = 80;
       window-height = 32;
     };
-  };}
+  };
+}
