@@ -6,6 +6,11 @@
   imports = [
     ./shell
     ./desktop
+
+    ./steam.nix
+    ./home-manager.nix
+    # ./boxes.nix
+    # ./ollama.nix
   ];
 
   # Version

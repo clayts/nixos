@@ -1,15 +1,17 @@
 {pkgs, ...}: {
   imports = [
+    {home.file.".Templates".source = ./templates;}
     ./scripts
     ./firefox.nix
-    ./steam.nix
-    ./google-calendar.nix
-    # ./zeditor.nix
-    # ./ghostty.nix
-    # ./ollama.nix
-    # ./boxes.nix
+    ./ghostty.nix
+    ./lsd.nix
+    ./micro.nix
+    ./zed-editor.nix
   ];
-  environment.systemPackages = with pkgs; [
+
+  home.stateVersion = "25.05";
+
+  home.packages = with pkgs; [
     # Desktop
     loupe
     file-roller
@@ -22,6 +24,7 @@
     celluloid
     gnome-firmware
     gitg
+    steam
 
     # Shell
     fzf

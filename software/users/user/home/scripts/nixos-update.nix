@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.writeShellScriptBin "nixos-update" ''
       cd /etc/nixos &&
 

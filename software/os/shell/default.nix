@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  imports = [./hostfetch];
+
   # Fix sudo shlvl
   security.sudo.extraConfig = ''
     Defaults:root,%wheel env_keep+=SHLVL

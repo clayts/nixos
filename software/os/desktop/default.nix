@@ -19,6 +19,7 @@ in {
     ./extensions.nix
     ./fonts.nix
     ./wallpaper.nix
+    ./google-calendar.nix
   ];
 
   # Packages

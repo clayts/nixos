@@ -18,7 +18,6 @@
           {networking.hostName = name;}
           ./hardware/${name}
           ./software
-          ./users
         ];
       }) (builtins.readDir ./hardware);
   };
