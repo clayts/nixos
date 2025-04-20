@@ -25,11 +25,11 @@
   ];
 in {
   imports = [
+    ./scripts
     ./firefox.nix
     ./steam.nix
     ./zeditor.nix
     ./ghostty.nix
-    ./scripts.nix
     ./google-calendar.nix
     # ./ollama.nix
     # ./boxes.nix
