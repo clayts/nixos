@@ -3,13 +3,13 @@
     (pkgs.writeShellScriptBin "hostfetch" ''
       logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
 
-      source /etc/os-release
-
       loltext=$(echo "$logo" | ${pkgs.dotacat}/bin/dotacat -F 0.5)
 
-      hardware=$(cat /sys/devices/virtual/dmi/id/product_version)
+      source /etc/os-release
+
+      hardware="$(cat /sys/devices/virtual/dmi/id/product_version)"
       os="$PRETTY_NAME"
-      kernel=$(uname -sr)
+      kernel="$(uname -sr)"
 
       style_bold=$(${pkgs.ncurses}/bin/tput bold)
       style_normal=$(${pkgs.ncurses}/bin/tput sgr0)

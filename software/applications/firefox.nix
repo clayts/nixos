@@ -29,7 +29,6 @@
         "browser.newtabpage.activity-stream.showSponsored" = lock-false;
         "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = lock-true;
         "browser.toolbars.bookmarks.visibility" = "never";
         "media.ffmpeg.vaapi.enabled" = lock-true;
       };

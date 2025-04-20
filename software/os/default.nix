@@ -8,9 +8,6 @@
     ./desktop
   ];
 
-  # Hostname
-  networking.hostName = "aura";
-
   # Version
   system.stateVersion = "24.11";
 
@@ -87,6 +84,27 @@
   services.fwupd.enable = true;
   hardware.enableAllFirmware = true;
 
+  # Networking
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  # Sound
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Printing
+  services.printing.enable = true;
+
   # Remove bloat
   documentation.nixos.enable = false;
 
@@ -105,17 +123,4 @@
     PICTURES=Pictures
     VIDEOS=Videos
   '';
-
-  # Guest
-  users.users."guest" = {
-    description = "Guest";
-    isNormalUser = true;
-  };
-
-  # User
-  users.users."user" = {
-    description = "User";
-    isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel" "docker"];
-  };
 }

@@ -1,16 +1,32 @@
 {pkgs, ...}: {
-  # Bluetooth
-  # hardware.firmware = let
-  #   linux-firmware-git = pkgs.linux-firmware.overrideAttrs (oldAttrs: {
-  #     src = pkgs.fetchgit {
-  #       url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
-  #       rev = "c1a774f36657e30e28a83002a8ebf5add44e02aa";
-  #       sha256 = "sha256-aQdEl9+7zbNqWSII9hjRuPePvSfWVql5u5TIrGsa+Ao=";
-  #     };
-  #   });
-  # in [linux-firmware-git];
+  imports = [
+    ./platform.nix
+  ];
 
-  # Sound
+  services.fprintd.enable = true;
+  hardware.sensor.iio.enable = true;
+  services.thermald.enable = true;
+  services.fstrim.enable = true;
+
+  # ARC graphics
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-compute-runtime
+      vpl-gpu-rt
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965
+      intel-ocl
+      libvdpau-va-gl
+    ];
+  };
+  hardware.graphics.extraPackages32 = with pkgs.driversi686Linux; [
+    intel-vaapi-driver
+    intel-media-driver
+  ];
+
+  # Hacks
+  ## Sound
   environment.sessionVariables = let
     alsa-ucm-conf-git = pkgs.alsa-ucm-conf.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -24,7 +40,7 @@
     ALSA_CONFIG_UCM2 = "${alsa-ucm-conf-git}/share/alsa/ucm2";
   };
 
-  # Touchpad
+  ## Touchpad
   environment.etc."libinput/local-overrides.quirks".text = ''
     # The ThinkPad X9 15 Gen 1 Forcepad touchpad is not
     # detected as a pressure pad

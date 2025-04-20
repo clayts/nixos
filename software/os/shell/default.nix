@@ -4,6 +4,8 @@
     Defaults:root,%wheel env_keep+=SHLVL
   '';
 
+  security.sudo.wheelNeedsPassword = false;
+
   users.defaultUserShell = pkgs.zsh;
   system.userActivationScripts = {
     touchZshrc = {
