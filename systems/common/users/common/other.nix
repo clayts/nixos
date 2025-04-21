@@ -10,7 +10,6 @@
     eyedropper
     nautilus
     celluloid
-    gitg
 
     # Shell
     fzf
