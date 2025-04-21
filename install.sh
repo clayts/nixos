@@ -40,11 +40,12 @@ create() {
     echo """
     {...}: {
       imports = [
-        ./platform.nix
+        ./hardware.nix
         ../modules/os
+        ../modules/users
       ];
     }
-    """ > "hardware/$HOSTNAME/default.nix"
+    """ > "systems/$HOSTNAME/default.nix"
 }
 
 # Mount filesystems by partlabel
@@ -78,12 +79,12 @@ sudo mv "$SCRIPT_DIR" /mnt/etc/nixos
 cd /mnt/etc/nixos
 
 # Create or update hardware configuration
-if [[ ! -d "hardware/$HOSTNAME" ]]; then
+if [[ ! -d "systems/$HOSTNAME" ]]; then
     create
 fi
 
 echo "Scanning hardware..."
-sudo nixos-generate-config --root /mnt --show-hardware-config > "hardware/$HOSTNAME/platform.nix"
+sudo nixos-generate-config --root /mnt --show-hardware-config > "systems/$HOSTNAME/hardware.nix"
 
 read -p """
 Check the configuration in /mnt/hardware/$HOSTNAME before continuing!

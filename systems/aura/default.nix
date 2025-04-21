@@ -1,9 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./platform.nix
+    ./hardware.nix
     ../common/os
     ../common/users
-
     ../common/arc.nix
   ];
 
