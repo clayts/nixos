@@ -18,8 +18,8 @@ in {
   imports = [
     ./extensions.nix
     ./fonts.nix
-    ./wallpaper.nix
     ./google-calendar.nix
+    ./earthview
   ];
 
   # Packages
@@ -94,7 +94,7 @@ in {
         "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
         "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
         "org/gnome/desktop/interface" = interface;
-        "org/gnome/desktop/background".picture-uri = "/tmp/wallpaper.jpg";
+        "org/gnome/desktop/background".picture-uri = "/var/lib/earthview-wallpaper/wallpaper.jpeg";
         "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
 
         "org/gnome/mutter" = {
