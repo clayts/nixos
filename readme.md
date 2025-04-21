@@ -2,9 +2,7 @@
 
 - Cheese
 - Howdy
-- https://discourse.nixos.org/t/disable-bluetooth-on-boot/14726/2
-- hide micro icon
-- make 'xterm' a wrapper around ghostty so that gnome can use ghostty as a launcher for terminal apps.
+- Gnome can't launch .desktop files marked as exec in terminal. Make 'xterm' a wrapper around ghostty so that gnome can use ghostty as a launcher for terminal apps? or set xdg.terminal-exec = {enable=true;package=...}?
 - Check out:
 	- setzer: latex editor
   - LMMS: music studio

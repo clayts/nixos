@@ -17,7 +17,8 @@
         modules = [
           {networking.hostName = name;}
           ./hardware/${name}
-          ./software
+          ./os
+          ./users
         ];
       }) (builtins.readDir ./hardware);
   };

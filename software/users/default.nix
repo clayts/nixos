@@ -1,6 +1,0 @@
-{...}: {
-  imports = [
-    ./guest
-    ./user
-  ];
-}

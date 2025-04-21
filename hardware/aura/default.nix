@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./platform.nix
+    ../modules/arc.nix
   ];
 
   services.fprintd.enable = true;
@@ -8,22 +9,8 @@
   services.thermald.enable = true;
   services.fstrim.enable = true;
 
-  # ARC graphics
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-compute-runtime
-      vpl-gpu-rt
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965
-      intel-ocl
-      libvdpau-va-gl
-    ];
-  };
-  hardware.graphics.extraPackages32 = with pkgs.driversi686Linux; [
-    intel-vaapi-driver
-    intel-media-driver
-  ];
+  # Prevent bluetooth from automatically starting on boot
+  hardware.bluetooth.powerOnBoot = false;
 
   # Hacks
   ## Sound
