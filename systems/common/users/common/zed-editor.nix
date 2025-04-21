@@ -21,109 +21,109 @@
       '';
     };
     userSettings = {
-      "hard_tabs" = true;
-      "git_panel" = {
-        "dock" = "right";
+      hard_tabs = true;
+      git_panel = {
+        dock = "right";
       };
-      "icon_theme" = "Colored Zed Icons Theme Dark";
-      "show_edit_predictions" = false;
-      "assistant" = {
-        "default_model" = {
-          "provider" = "zed.dev";
-          "model" = "claude-3-5-sonnet-latest";
+      icon_theme = "Colored Zed Icons Theme Dark";
+      show_edit_predictions = false;
+      assistant = {
+        default_model = {
+          provider = "zed.dev";
+          model = "claude-3-5-sonnet-latest";
         };
-        "dock" = "left";
-        "version" = "2";
+        dock = "left";
+        version = 2;
       };
 
-      "chat_panel" = {
-        "dock" = "right";
+      chat_panel = {
+        dock = "right";
       };
-      "notification_panel" = {
-        "dock" = "left";
-        "button" = false;
+      notification_panel = {
+        dock = "left";
+        button = false;
       };
-      "features" = {
-        "edit_prediction_provider" = "zed";
+      features = {
+        edit_prediction_provider = "zed";
       };
-      "terminal" = {
-        #"button": false,
-        "dock" = "bottom";
-        "env" = {
-          "TERM" = "xterm-256color";
+      terminal = {
+        # button : false,
+        dock = "bottom";
+        env = {
+          TERM = "xterm-256color";
         };
-        "line_height" = {
-          "custom" = 1.15;
+        line_height = {
+          custom = 1.15;
         };
       };
-      "outline_panel" = {
-        "dock" = "right";
-        "button" = false;
+      outline_panel = {
+        dock = "right";
+        button = false;
       };
-      "project_panel" = {
-        "dock" = "right";
+      project_panel = {
+        dock = "right";
       };
-      "collaboration_panel" = {
-        "dock" = "right";
-        "button" = false;
+      collaboration_panel = {
+        dock = "right";
+        button = false;
       };
-      "buffer_font_family" = "Cascadia Code";
-      "buffer_font_features" = {
-        "calt" = true;
-        "ss01" = true;
+      buffer_font_family = "Cascadia Code";
+      buffer_font_features = {
+        calt = true;
+        ss01 = true;
       };
-      "buffer_font_weight" = 400;
-      "buffer_font_size" = 13;
-      "buffer_line_height" = {
-        "custom" = 1.15;
+      buffer_font_weight = 400;
+      buffer_font_size = 13;
+      buffer_line_height = {
+        custom = 1.15;
       };
 
-      "ui_font_family" = ".SystemUIFont";
-      "ui_font_size" = 15;
-      "ui_font_weight" = 300;
-      "restore_on_startup" = "none";
-      "soft_wrap" = "bounded";
-      "preferred_line_length" = 100;
+      ui_font_family = ".SystemUIFont";
+      ui_font_size = 15;
+      ui_font_weight = 300;
+      restore_on_startup = "none";
+      soft_wrap = "bounded";
+      preferred_line_length = 100;
 
-      "tabs"."file_icons" = true;
+      tabs . file_icons = true;
 
-      "theme" = {
-        "mode" = "dark";
-        "light" = "One Light";
-        "dark" = "Colorizer";
+      theme = {
+        mode = "dark";
+        light = "One Light";
+        dark = "Colorizer";
       };
-      "experimental.theme_overrides" = {
-        "syntax" = {
-          "comment" = {
-            "font_style" = "italic";
+      experimental.theme_overrides = {
+        syntax = {
+          comment = {
+            font_style = "italic";
           };
-          "variable.parameter" = {"font_style" = "normal";};
+          variable.parameter = {font_style = "normal";};
         };
-        "players" = [
+        players = [
           {
-            "cursor" = "#F00";
+            cursor = "#F00";
           }
         ];
       };
 
-      "languages" = {
-        "Nix" = {
-          "language_servers" = ["nixd" "!nil"];
+      languages = {
+        Nix = {
+          language_servers = ["nixd" "!nil"];
         };
       };
 
-      "node" = {
-        "path" = "${pkgs.nodejs}/bin/node";
+      node = {
+        path = "${pkgs.nodejs}/bin/node";
       };
 
-      "lsp" = {
-        "nixd" = {
-          "settings" = {"formatting" = {"command" = ["alejandra"];};};
+      lsp = {
+        nixd = {
+          settings = {formatting = {command = ["alejandra"];};};
         };
-        "rust-analyzer" = {
-          "initialization_options" = {
-            "checkOnSave" = {
-              "command" = "clippy";
+        rust-analyzer = {
+          initialization_options = {
+            checkOnSave = {
+              command = "clippy";
             };
           };
         };
