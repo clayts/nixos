@@ -16,10 +16,8 @@
         specialArgs = {inherit inputs;};
         modules = [
           {networking.hostName = name;}
-          ./hardware/${name}
-          ./os
-          ./users
+          ./systems/${name}
         ];
-      }) (builtins.readDir ./hardware);
+      }) (builtins.readDir ./systems);
   };
 }

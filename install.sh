@@ -41,6 +41,7 @@ create() {
     {...}: {
       imports = [
         ./platform.nix
+        ../modules/os
       ];
     }
     """ > "hardware/$HOSTNAME/default.nix"

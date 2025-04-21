@@ -1,7 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ./platform.nix
-    ../modules/arc.nix
+    ../common/os
+    ../common/users
+
+    ../common/arc.nix
   ];
 
   services.fprintd.enable = true;
