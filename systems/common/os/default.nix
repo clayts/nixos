@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./shell
+    ./console
     ./desktop
 
     ./home-manager.nix
@@ -57,12 +57,16 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  # environment.systemPackages = with pkgs; [
-  #   aspellDicts.en
-  #   aspellDicts.en-computers
-  #   aspellDicts.en-science
-  # ];
-  environment.systemPackages = [(pkgs.aspellWithDicts (dicts: [dicts.en]))];
+  environment.systemPackages = [
+    (pkgs.aspellWithDicts (dicts: [
+      dicts.en
+      dicts.en-computers
+      dicts.en-science
+    ]))
+  ];
+
+  # Sudo
+  security.sudo.wheelNeedsPassword = false;
 
   # Nix
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

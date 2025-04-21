@@ -6,8 +6,6 @@
     Defaults:root,%wheel env_keep+=SHLVL
   '';
 
-  security.sudo.wheelNeedsPassword = false;
-
   users.defaultUserShell = pkgs.zsh;
   system.userActivationScripts = {
     touchZshrc = {
@@ -111,7 +109,7 @@
 
         # powerlevel10k theme
         # echo "INIT powerlevel10k theme"
-        source ${./powerlevel10k.zsh}
+        source ${./powerlevel10k/config.zsh}
       fi
     '';
   };
