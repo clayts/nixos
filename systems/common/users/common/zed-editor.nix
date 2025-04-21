@@ -21,6 +21,7 @@
       '';
     };
     userSettings = {
+      "hard_tabs" = true;
       "git_panel" = {
         "dock" = "right";
       };
@@ -83,6 +84,8 @@
       "restore_on_startup" = "none";
       "soft_wrap" = "bounded";
       "preferred_line_length" = 100;
+
+      "tabs"."file_icons" = true;
 
       "theme" = {
         "mode" = "dark";
