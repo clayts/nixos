@@ -3,7 +3,9 @@
     ./hardware.nix
     ../common/os
     ../common/users
-    ../common/arc.nix
+
+    ../common/hardware/arc.nix
+    ../common/software/steam.nix
   ];
 
   services.fprintd.enable = true;

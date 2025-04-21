@@ -3,10 +3,13 @@
 - Cheese
 - Howdy
 - Gnome can't launch .desktop files marked as exec in terminal. Make 'xterm' a wrapper around ghostty so that gnome can use ghostty as a launcher for terminal apps? or set xdg.terminal-exec = {enable=true;package=...}?
+- turn on file icons in zed `"tabs": {    "file_icons": false,`
+- turn on hard tabs in zed `  "hard_tabs": false,`
 - Check out:
 	- setzer: latex editor
   - LMMS: music studio
   - gcompris: games for 2-10 year olds
+
 
 # Installation
 

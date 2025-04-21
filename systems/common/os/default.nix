@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  hostname,
   ...
 }: {
   imports = [
@@ -9,12 +10,13 @@
 
     ./steam.nix
     ./home-manager.nix
-    # ./boxes.nix
-    # ./ollama.nix
   ];
 
   # Version
   system.stateVersion = "24.11";
+
+  # Hostname
+  networking.hostName = hostname;
 
   # Boot
   boot = {

@@ -11,13 +11,10 @@
     };
   };
   outputs = inputs: {
-    nixosConfigurations = builtins.mapAttrs (name: _:
+    nixosConfigurations = builtins.mapAttrs (hostname: _:
       inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          {networking.hostName = name;}
-          ./systems/${name}
-        ];
+        specialArgs = {inherit inputs hostname;};
+        modules = [./systems];
       }) (builtins.readDir ./systems);
   };
 }
