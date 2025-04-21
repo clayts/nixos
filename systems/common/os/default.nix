@@ -8,7 +8,6 @@
     ./shell
     ./desktop
 
-    ./steam.nix
     ./home-manager.nix
   ];
 
@@ -22,8 +21,6 @@
   boot = {
     ## Kernel
     kernelPackages = pkgs.linuxPackages_latest;
-    # kernelPackages = pkgs.linuxKernel.packages.linux_6_13;
-    # kernelPackages = pkgs.linuxPackages;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
