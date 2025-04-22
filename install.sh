@@ -36,7 +36,7 @@ fi
 
 # Function to create initial hardware configuration directory
 create() {
-    mkdir -p "hardware/$HOSTNAME"
+    mkdir -p "systems/$HOSTNAME"
     echo """
     {...}: {
       imports = [
