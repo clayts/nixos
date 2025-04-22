@@ -11,14 +11,20 @@
     };
   };
   outputs = inputs: {
-    nixosConfigurations = builtins.mapAttrs (name: _:
-      inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./systems/${name}
-          {networking.hostName = name;}
-        ];
-      }) (inputs.nixpkgs.lib.filterAttrs (n: _: builtins.pathExists (./systems + "/${n}/default.nix"))
-      (builtins.readDir ./systems));
+    nixosConfigurations = with builtins; let
+      systems =
+        filter
+        (path: pathExists (./systems + "/${path}/default.nix"))
+        (attrNames (readDir ./systems));
+      os = name:
+        inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./systems/${name}
+            {networking.hostName = name;}
+          ];
+        };
+    in
+      inputs.nixpkgs.lib.genAttrs systems os;
   };
 }

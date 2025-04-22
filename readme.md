@@ -2,8 +2,6 @@
 
 - Cheese
 - Howdy
-- filter nixosConfigurations.*
-- move star button=play button settings to aura
 
 - Check out:
 	- setzer: latex editor
