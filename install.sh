@@ -40,9 +40,9 @@ create() {
     echo """
     {...}: {
       imports = [
-        ./hardware.nix
-        ../modules/os
-        ../modules/users
+      	./hardware.nix
+        ../common/os
+        ../common/users
       ];
     }
     """ > "systems/$HOSTNAME/default.nix"
