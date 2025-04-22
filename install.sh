@@ -72,6 +72,7 @@ fi
 # Move configuration to /etc/nixos
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 echo "Moving configuration files..."
+sudo mkdir /mnt/etc
 sudo mv "$SCRIPT_DIR" /mnt/etc/nixos
 cd /mnt/etc/nixos
 
