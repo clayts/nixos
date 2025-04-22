@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [[ "$1" == "--finish" ]]; then
+if [[ "${1:-}" == "--finish" ]]; then
     # Run your commands here
     echo "Finishing up..."
     echo "Set password for guest:"
