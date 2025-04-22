@@ -84,7 +84,7 @@ echo "Scanning hardware..."
 sudo nixos-generate-config --root /mnt --show-hardware-config > "systems/$HOSTNAME/hardware.nix"
 
 read -p """
-Check the configuration in /mnt/hardware/$HOSTNAME before continuing!
+Check the configuration in /mnt/etc/nixos/systems/$HOSTNAME before continuing!
 
 Press enter to install when ready
 """
