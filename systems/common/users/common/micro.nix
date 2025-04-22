@@ -1,7 +1,10 @@
 {...}: {
+  xdg.desktopEntries."micro" = {
+    name = "Micro";
+    noDisplay = true;
+  };
   programs.micro = {
     enable = true;
-    package = null;
     settings = {
       "colorscheme" = "custom";
       "mkparents" = true;
