@@ -85,19 +85,21 @@
       soft_wrap = "bounded";
       preferred_line_length = 100;
 
-      tabs . file_icons = true;
+      tabs.file_icons = true;
 
       theme = {
         mode = "dark";
         light = "One Light";
         dark = "Colorizer";
       };
-      experimental.theme_overrides = {
+      "experimental.theme_overrides" = {
         syntax = {
           comment = {
             font_style = "italic";
           };
-          variable.parameter = {font_style = "normal";};
+          "variable.parameter" = {
+            font_style = "normal";
+          };
         };
         players = [
           {
