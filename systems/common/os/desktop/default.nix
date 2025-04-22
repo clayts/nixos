@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   interface = {
@@ -24,6 +25,7 @@ in {
 
   # Packages
   environment.systemPackages = with pkgs; [
+    yelp
     # Hide CUPS
     (pkgs.makeDesktopItem {
       name = "cups";
@@ -76,6 +78,7 @@ in {
     {
       settings = {
         "org/gnome/desktop/interface" = interface;
+        "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);};
       };
     }
   ];

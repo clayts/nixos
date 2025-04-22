@@ -1,6 +1,5 @@
 {...}: {
   dconf.settings = {
-    "org/gnome/desktop/app-folders" = {folder-children = [];};
     "org/gnome/shell".favorite-apps = [
       "firefox.desktop"
       "org.gnome.Nautilus.desktop"
