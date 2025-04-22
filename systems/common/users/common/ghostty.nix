@@ -1,4 +1,9 @@
-{...}: {
+{pkgs, ...}: {
+  home.packages = [
+    (pkgs.writeShellScriptBin "xterm" ''
+      ghostty $*
+    '')
+  ];
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
