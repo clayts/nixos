@@ -2,7 +2,9 @@
 
 - Cheese
 - Howdy
-- Gnome can't launch .desktop files marked as exec in terminal. Make 'xterm' a wrapper around ghostty so that gnome can use ghostty as a launcher for terminal apps? or set xdg.terminal-exec = {enable=true;package=...}?
+- filter nixosConfigurations.*
+- move star button=play button settings to aura
+
 - Check out:
 	- setzer: latex editor
   - LMMS: music studio
