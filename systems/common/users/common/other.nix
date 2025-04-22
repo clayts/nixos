@@ -12,9 +12,7 @@
     celluloid
 
     # Shell
-    fzf
     fd
-    zoxide
     git
     gh
   ];

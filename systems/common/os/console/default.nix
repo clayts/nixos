@@ -32,6 +32,10 @@
     loadInNixShell = false;
     nix-direnv.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    fzf
+    zoxide
+  ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
