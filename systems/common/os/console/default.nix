@@ -1,12 +1,17 @@
 {pkgs, ...}: {
   imports = [./hostfetch];
 
+  environment.systemPackages = with pkgs; [
+    fzf
+    zoxide
+    grc
+  ];
+
   # Fix sudo shlvl
   security.sudo.extraConfig = ''
     Defaults:root,%wheel env_keep+=SHLVL
   '';
 
-  users.defaultUserShell = pkgs.zsh;
   system.userActivationScripts = {
     touchZshrc = {
       text = ''
@@ -15,6 +20,7 @@
       '';
     };
   };
+
   environment.shellAliases = {
     edit = "$EDITOR";
     open = "xdg-open";
@@ -23,19 +29,20 @@
     lt = "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
     cd = "z";
   };
+
   environment.sessionVariables = {
-    EDITOR = "${pkgs.micro}/bin/micro";
+    EDITOR = "micro";
     GOPATH = "$HOME/.local/share/go";
+    GREP_OPTIONS = "--color=auto";
   };
+
   programs.direnv = {
     enable = true;
     loadInNixShell = false;
     nix-direnv.enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    fzf
-    zoxide
-  ];
+
+  users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -65,6 +72,10 @@
       # direnv
       # echo "INIT direnv"
       eval "$(direnv hook zsh)"
+
+      # grc
+      # echo "INIT grc"
+      source ${pkgs.grc}/etc/grc.zsh
 
       # skip in tty
       if [[ -n $DISPLAY ]];
