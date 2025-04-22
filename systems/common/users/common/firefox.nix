@@ -26,9 +26,7 @@
         userContent = ''
           @import "${inputs.firefox-theme}/userContent.css";
         '';
-        extraConfig = ''
-          ${inputs.firefox-theme}/configuration/user.js
-        '';
+        extraConfig = builtins.readFile "${inputs.firefox-theme}/configuration/user.js";
 
         settings = {
           "extensions.pocket.enabled" = false;
