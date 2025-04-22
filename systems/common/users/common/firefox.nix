@@ -77,7 +77,6 @@
           "gnomeTheme.allTabsButton" = false;
           "gnomeTheme.allTabsButtonOnOverflow" = false;
           "gnomeTheme.hideWebrtcIndicator" = false;
-          "gnomeTheme.oledBlack" = true;
           "gnomeTheme.noThemedIcons" = false;
           "gnomeTheme.bookmarksOnFullscreen" = false;
         };

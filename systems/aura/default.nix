@@ -1,10 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./hardware.nix
+    ../common/hardware/arc.nix
+    ./monitor
+
     ../common/os
     ../common/users
-
-    ../common/hardware/arc.nix
     ../common/software/steam.nix
   ];
 
