@@ -75,15 +75,11 @@ in {
   programs.dconf.profiles.user.databases = [
     {
       settings = {
-        "org/gnome/desktop/app-folders" = {folder-children = ["Games" "System"];};
+        "org/gnome/desktop/app-folders" = {folder-children = ["System"];};
         "org/gnome/desktop/app-folders/folders/System" = {
           name = "System";
           categories = ["System"];
           apps = ["org.gnome.Extensions.desktop" "org.gnome.Firmware.desktop" "org.gnome.Settings.desktop"];
-        };
-        "org/gnome/desktop/app-folders/folders/Games" = {
-          name = "Games";
-          categories = ["Game"];
         };
         "org/gnome/shell".favorite-apps = [
           "firefox.desktop"

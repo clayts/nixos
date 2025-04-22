@@ -23,7 +23,7 @@ in {
     home.packages = with pkgs; [
       # Desktop
       gnome-firmware
-      steam
+      lutris
 
       # Shell
       pciutils
