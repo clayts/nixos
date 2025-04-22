@@ -12,6 +12,7 @@ in {
     imports = [
       {imports = with builtins; map (f: ./scripts + "/${f}") (attrNames (readDir ./scripts));}
       {home.file.".Templates".source = ./templates;}
+      ../common/desktop.nix
       ../common/firefox.nix
       ../common/ghostty.nix
       ../common/lsd.nix

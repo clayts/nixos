@@ -10,6 +10,7 @@ in {
     home.stateVersion = "25.05";
 
     imports = [
+      ../common/desktop.nix
       ../common/firefox.nix
       ../common/ghostty.nix
       ../common/lsd.nix
