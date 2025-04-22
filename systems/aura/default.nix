@@ -7,6 +7,7 @@
     ../common/users/guest
     ../common/users/user
     ../common/software/steam.nix
+    ../common/software/boxes.nix
   ];
 
   # Prevent bluetooth from automatically starting on boot
