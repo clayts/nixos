@@ -74,6 +74,7 @@ in {
       };
     }
   ];
+
   programs.dconf.profiles.user.databases = [
     {
       settings = {

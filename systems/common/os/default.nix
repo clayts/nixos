@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  hostname,
   ...
 }: {
   imports = [
@@ -13,9 +12,6 @@
 
   # Version
   system.stateVersion = "24.11";
-
-  # Hostname
-  networking.hostName = hostname;
 
   # Boot
   boot = {

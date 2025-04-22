@@ -2,22 +2,30 @@
   imports = [
     ./hardware.nix
     ../common/hardware/arc.nix
-    ./monitor
 
     ../common/os
-    ../common/users
+    ../common/users/guest
+    ../common/users/user
     ../common/software/steam.nix
   ];
 
+  # Prevent bluetooth from automatically starting on boot
+  hardware.bluetooth.powerOnBoot = false;
+
+  # Remap star key to play button
+  programs.dconf.profiles.user.databases = [{settings."org/gnome/settings-daemon/plugins/media-keys".play = ["Favorites"];}];
+
+  # Force 120hz
+  home-manager.sharedModules = [{home.file.".config/monitors.xml".source = ./monitors.xml;}];
+  systemd.tmpfiles.rules = ["L+ /run/gdm/.config/monitors.xml - - - - ${./monitors.xml}"];
+
+  # Enable miscellanious hardware
   services.fprintd.enable = true;
   hardware.sensor.iio.enable = true;
   services.thermald.enable = true;
   services.fstrim.enable = true;
 
-  # Prevent bluetooth from automatically starting on boot
-  hardware.bluetooth.powerOnBoot = false;
-
-  # Hacks
+  # Temporary Hacks
   ## Sound
   environment.sessionVariables = let
     alsa-ucm-conf-git = pkgs.alsa-ucm-conf.overrideAttrs (oldAttrs: {

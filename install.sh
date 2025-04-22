@@ -41,8 +41,10 @@ create() {
     {...}: {
       imports = [
       	./hardware.nix
+
         ../common/os
-        ../common/users
+        ../common/users/guest
+        ../common/users/user
       ];
     }
     """ > "systems/$HOSTNAME/default.nix"
