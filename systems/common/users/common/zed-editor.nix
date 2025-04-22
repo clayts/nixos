@@ -33,7 +33,7 @@
           model = "claude-3-5-sonnet-latest";
         };
         dock = "left";
-        version = 2;
+        version = "2";
       };
 
       chat_panel = {
