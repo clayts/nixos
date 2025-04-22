@@ -57,11 +57,6 @@ if ! sudo mount /dev/disk/by-partlabel/root /mnt; then
     exit 1
 fi
 
-if [ ! "$(ls /mnt)" = "lost+found" ]; then
-    echo "Error: root filesystem is not empty"
-    exit 1
-fi
-
 sudo mkdir /mnt/boot
 if ! sudo mount -o umask=077 /dev/disk/by-partlabel/boot /mnt/boot; then
     echo "Error: Failed to mount boot filesystem"
