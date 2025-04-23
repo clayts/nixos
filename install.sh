@@ -25,6 +25,8 @@ WARNING! This script should only be run from a liveUSB, on a system which has be
 - The root partition must be unmounted, and available at /dev/disk/by-partlabel/root.
 - The boot partition must be unmounted, and available at /dev/disk/by-partlabel/boot.
 - If a swap partition is desired, it must be deactivated and available at /dev/disk/by-partlabel/swap.
+
+The 'Name' field in gparted determines how the device appears in /dev/disk/by-partlabel.
 """
 
 # Get hostname from user
@@ -84,11 +86,7 @@ fi
 echo "Scanning hardware..."
 sudo nixos-generate-config --root /mnt --show-hardware-config > "systems/$HOSTNAME/hardware.nix"
 
-read -p """
-Check the configuration in /mnt/etc/nixos/systems/$HOSTNAME before continuing!
-
-Press enter to install when ready
-"""
+nano systems/$HOSTNAME/default.nix
 
 # Install NixOS
 echo "Installing NixOS..."
