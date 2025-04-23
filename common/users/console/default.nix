@@ -60,8 +60,7 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     initContent = ''
-      [[ $SHLVL -eq 1 ]] && hostfetch
-
+      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && hostfetch
 
       # keybindings
       bindkey "$terminfo[kcuu1]" history-substring-search-up
