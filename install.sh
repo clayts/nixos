@@ -50,6 +50,7 @@ create() {
       ];
     }
     """ > "systems/$HOSTNAME/default.nix"
+    git add systems/$HOSTNAME/default.nix
 }
 
 # Mount filesystems by partlabel
@@ -85,6 +86,7 @@ fi
 
 echo "Scanning hardware..."
 sudo nixos-generate-config --root /mnt --show-hardware-config > "systems/$HOSTNAME/hardware.nix"
+git add systems/$HOSTNAME/hardware.nix
 
 nano systems/$HOSTNAME/default.nix
 
