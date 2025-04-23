@@ -14,13 +14,13 @@
     nixosConfigurations = with builtins; let
       systems =
         filter
-        (path: pathExists (./systems + "/${path}/default.nix"))
-        (attrNames (readDir ./systems));
+        (path: pathExists (./. + "/${path}/default.nix"))
+        (attrNames (readDir ./.));
       os = name:
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
-            ./systems/${name}
+            ./${name}
             {networking.hostName = name;}
           ];
         };

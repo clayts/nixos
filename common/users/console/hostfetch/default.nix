@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.writeShellScriptBin "hostfetch" ''
       logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
 

@@ -17,15 +17,13 @@
   };
 in {
   imports = [
-    ./extensions.nix
     ./fonts.nix
-    ./google-calendar.nix
-    ./earthview
   ];
 
   # Packages
   environment.systemPackages = with pkgs; [
     yelp
+
     # Hide CUPS
     (pkgs.makeDesktopItem {
       name = "cups";

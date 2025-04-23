@@ -4,9 +4,8 @@
   ...
 }: {
   imports = [
-    ./console
-    ./desktop
-
+    ./desktop.nix
+    ./steam.nix
     ./home-manager.nix
   ];
 
@@ -61,8 +60,15 @@
     ]))
   ];
 
+  # Zsh
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # Sudo
   security.sudo.wheelNeedsPassword = false;
+  security.sudo.extraConfig = ''
+    Defaults:root,%wheel env_keep+=SHLVL
+  ''; # Fix sudo shlvl
 
   # Nix
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

@@ -1,4 +1,28 @@
-{...}: {
+{pkgs, ...}: {
+  imports = [
+    ./fonts.nix
+    ./extensions.nix
+    ./firefox.nix
+    ./ghostty.nix
+    ./zed-editor.nix
+    ./google-calendar.nix
+    ./earthpaper
+    ./templates
+  ];
+  home.packages = with pkgs; [
+    lutris
+    gnome-firmware
+    loupe
+    file-roller
+    gnome-calculator
+    gnome-system-monitor
+    gnome-characters
+    gnome-logs
+    eyedropper
+    nautilus
+    celluloid
+  ];
+
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
       "firefox.desktop"
@@ -8,14 +32,14 @@
     "org/gnome/desktop/peripherals/touchpad".speed = 0.1;
     "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
     "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
-    "org/gnome/desktop/background".picture-uri = "/var/lib/earthview-wallpaper/wallpaper.jpeg";
+    "org/gnome/desktop/background".picture-uri = ".earthpaper/wallpaper.jpeg";
     "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
 
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tiling = true;
       workspaces-only-on-primary = true;
-      center-new-windows = true;
+      # center-new-windows = true;
     };
     "org/gnome/desktop/wm/keybindings" = {
       toggle-fullscreen = ["<Super>f"];

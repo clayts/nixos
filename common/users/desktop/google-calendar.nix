@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.makeDesktopItem {
       name = "com.google.Calendar";
       desktopName = "Google Calendar";
