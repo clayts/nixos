@@ -16,10 +16,6 @@
     font-hinting = "full";
   };
 in {
-  imports = [
-    ./fonts.nix
-  ];
-
   # Packages
   environment.systemPackages = with pkgs; [
     yelp
