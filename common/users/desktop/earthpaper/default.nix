@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   earthpaper = pkgs.writeShellScriptBin "earthpaper" ''
 
     target_dir="$HOME/.earthpaper"
