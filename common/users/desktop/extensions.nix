@@ -6,14 +6,15 @@
     just-perfection
   ];
 in {
-  programs.gnome-shell.extensions = extensions;
+  programs.gnome-shell = {
+    enable = true;
+    extensions = map (extension: {package = extension;}) extensions;
+  };
 
   dconf.settings = {
     "org/gnome/shell".disable-user-extensions = false;
     "org/gnome/shell".enabled-extensions =
-      map (
-        extension: extension.extensionUuid
-      )
+      map (extension: extension.extensionUuid)
       extensions;
     "org/gnome/shell/extensions/just-perfection" = {
       panel = false;
@@ -24,6 +25,8 @@ in {
       quick-settings-airplane-mode = false;
       window-preview-caption = false;
       background-menu = false;
+      support-notifier-showed-version = pkgs.gnomeExtensions.just-perfection.version;
+      support-notifier-type = 0;
     };
   };
 }
