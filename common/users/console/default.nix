@@ -1,5 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index
     ./hostfetch
     ./lsd.nix
     ./micro.nix
@@ -20,6 +25,8 @@
       GOPATH = "$HOME/.local/share/go";
     };
   };
+
+  programs.nix-index-database.comma.enable = true;
 
   programs.zsh = {
     enable = true;

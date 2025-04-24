@@ -9,6 +9,10 @@
       url = "github:rafaelmardojai/firefox-gnome-theme/master";
       flake = false;
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: {
     nixosConfigurations = with builtins; let
