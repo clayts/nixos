@@ -22,10 +22,6 @@ if [[ -z "$HOSTNAME" ]]; then
     exit 1
 fi
 
-echo
-lsblk
-echo
-
 SWAP_SIZE="$(free -m | awk '/^Mem:/{print $2 * 2}')M"
 
 mkdir $HOSTNAME
@@ -103,7 +99,7 @@ echo "Check the files in $HOSTNAME"
 read -p "Press enter to continue or CTRL+C to abort" READY
 
 echo "Installing..."
-sudo nix --extra-experimental-features nix-command run github:nix-community/disko/latest#disko-install -- --flake .#$HOSTNAME
+sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko-install -- --flake .#$HOSTNAME
 
 #move source into /mnt/etc/nixos
 #change owner
