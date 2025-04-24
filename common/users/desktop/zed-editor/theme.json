@@ -316,6 +316,7 @@
 					},
 					"variable.parameter": {
 						"color": "#ffb86cff",
+						"font_style": null,
 						"font_weight": null
 					},
 					"variable.special": {
