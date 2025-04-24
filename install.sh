@@ -2,6 +2,20 @@
 
 set -euo pipefail
 
+if [ $# -ne 1 ]; then
+    echo "Error: Script requires exactly one argument (disk)"
+    echo "Usage: $0 <disk>"
+    echo "Example: $0 /dev/sda"
+    exit 1
+fi
+
+DISK="$1"
+
+if [ ! -b "$DISK" ]; then
+    echo "Error: '$DISK' is not a valid block device"
+    exit 1
+fi
+
 read -p "Enter hostname for this system: " HOSTNAME
 if [[ -z "$HOSTNAME" ]]; then
     echo "Error: Hostname cannot be blank"
@@ -11,14 +25,6 @@ fi
 echo
 lsblk
 echo
-
-read -p "Enter target disk: " DISK
-if [[ -z "$DISK" ]]; then
-    echo "Error: Disk cannot be blank"
-    exit 1
-fi
-
-DISK_ID="$(ls -l /dev/disk/by-id/ | grep "$DISK$" | awk '{print $9}' | head -1)"
 
 SWAP_SIZE="$(free -m | awk '/^Mem:/{print $2 * 2}')M"
 
@@ -50,7 +56,7 @@ echo """
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/disk/by-id/$DISK_ID";
+        device = "$DISK";
         type = "disk";
         content = {
           type = "gpt";
