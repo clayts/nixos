@@ -44,9 +44,9 @@ sudo nixos-generate-config --show-hardware-config --no-filesystems > $HOSTNAME/h
 
 echo """
 
-{disko, ...}: {
+{inputs, ...}: {
   imports = [
-    disko.nixosModules.disko
+    inputs.disko.nixosModules.disko
   ];
 
   disko.devices = {
