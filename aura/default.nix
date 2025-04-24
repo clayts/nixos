@@ -1,10 +1,15 @@
-{pkgs, ...}: {
+
+
+{pkgs,...}: {
   imports = [
-    ./hardware.nix
+  	./hardware.nix
+    ./disks.nix
+
     ../common/os
     ../common/users
   ];
-
+  
+  
   # Prevent bluetooth from automatically starting on boot
   hardware.bluetooth.powerOnBoot = false;
 
@@ -64,3 +69,5 @@
     ModelPressurePad=1
   '';
 }
+
+

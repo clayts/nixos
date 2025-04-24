@@ -100,7 +100,7 @@ read -p "Press enter to continue or CTRL+C to abort" READY
 
 
 echo "Installing..."
-sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko-install -- --flake .#$HOSTNAME --disk main $DISK
+sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko-install -- --write-efi-boot-entries --flake .#$HOSTNAME --disk main $DISK
 
 sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko -- --flake .#$HOSTNAME --mode mount
 
@@ -113,7 +113,7 @@ echo 'set user password:'
 passwd user
 echo 'set guest password:'
 passwd guest
-chown -R user:users /mnt/etc/nixos
+chown -R user:users /etc/nixos
 """
 
 echo "*** Installation Complete! ***"
