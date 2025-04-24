@@ -52,7 +52,7 @@ echo """
   disko.devices = {
     disk = {
       main = {
-        device = \"\";
+        device = \"$DISK\";
         type = \"disk\";
         content = {
           type = \"gpt\";
@@ -98,9 +98,19 @@ git add $HOSTNAME
 echo "Check the files in $HOSTNAME"
 read -p "Press enter to continue or CTRL+C to abort" READY
 
+
 echo "Installing..."
 sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko-install -- --flake .#$HOSTNAME --disk main $DISK
 
-#move source into /mnt/etc/nixos
-#change owner
-#set passwords
+sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko -- --flake .#$HOSTNAME --mode mount
+
+cp -R . /mnt/etc/nixos
+
+sudo nixos-enter --root /mnt -c """
+passwd root
+passwd user
+passwd guest
+chown -R user:users /mnt/etc/nixos
+"""
+
+echo "Installation Complete!"
