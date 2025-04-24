@@ -26,6 +26,8 @@
     };
   };
 
+  programs.nix-index.enable = true;
+  programs.nix-index.enableZshIntegration = false; # slow - just use comma
   programs.nix-index-database.comma.enable = true;
 
   programs.zsh = {

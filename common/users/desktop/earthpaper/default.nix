@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  earthpaper = pkgs.writeShellScriptBin "earthpaper" ''
+  earthpaper = pkgs.writeShellScript "earthpaper" ''
     usage() {
         echo "$0 downloads a random EarthView (https://g.co/ev) image."
         echo "Usage: $0 [-o output_file]"
@@ -37,12 +37,12 @@
 
     ${pkgs.curl}/bin/curl -s "https://www.gstatic.com/prettyearth/assets/data/v3/$id.json" -o $dir/data.json
 
-    read -r latitude longitude elevation country attribution < <(${pkgs.jq}/bin/jq -r '.lat, .lng, .elevation, .geocode.country .attribution' $dir/data.json | tr '\n' ' ')
+    read -r latitude longitude elevation country attribution < <(${pkgs.jq}/bin/jq -r '.lat, .lng, .elevation, .geocode.country, .attribution' $dir/data.json | tr '\n' ' ')
     url="https://maps.google.com/?q=$latitude,$longitude"
 
     ${pkgs.jq}/bin/jq -r '.dataUri' $dir/data.json | sed 's/^data:image\/jpeg;base64,//' | base64 -d > "$image"
 
-    echo """ID:        $id
+    echo """ID:          $id
     Country:     $country
     Latitude:    $latitude
     Longitude:   $longitude
@@ -52,7 +52,7 @@
 
     rm -Rf $dir
   '';
-  earthpaper-switcher = pkgs.writeShellScript "earthpaper-switcher" ''
+  earthpaper-switcher = pkgs.writeShellScriptBin "earthpaper-switcher" ''
     dir="$HOME/.earthpaper"
     image_tmp=$(mktemp) &&
     info_tmp=$(mktemp) &&
@@ -61,7 +61,7 @@
     (
         echo "Fetching wallpaper:" &&
         mkdir -p $dir &&
-        ${earthpaper}/bin/earthpaper -o $image_tmp > $info_tmp &&
+        ${earthpaper} -o $image_tmp > $info_tmp &&
         cat $info_tmp &&
         mv $image_tmp $dir/wallpaper.jpeg &&
         mv $info_tmp $dir/wallpaper-info.txt
@@ -71,8 +71,8 @@
   '';
 in {
   home.activation = {
-    fetch_earthpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      [ ! -d "$HOME/.earthpaper" ] && ${earthpaper-switcher}
+    init_earthpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      [ ! -d "$HOME/.earthpaper" ] && ${earthpaper-switcher}/bin/earthpaper-switcher
     '';
   };
 
@@ -91,12 +91,12 @@ in {
 
     Service = {
       Type = "oneshot";
-      ExecStart = toString earthpaper-switcher;
+      ExecStart = "${earthpaper-switcher}/bin/earthpaper-switcher";
     };
     Install.WantedBy = ["default.target"];
   };
 
   home.packages = [
-    earthpaper
+    earthpaper-switcher
   ];
 }
