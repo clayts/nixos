@@ -14,7 +14,6 @@
 
   # Boot
   boot = {
-    ## Kernel
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
@@ -22,7 +21,6 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
-    ## Boot loader
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -59,6 +57,12 @@
       dicts.en-science
     ]))
   ];
+
+  # Suspend
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=60min
+  '';
+  services.logind.lidSwitch = "suspend-then-hibernate";
 
   # Zsh
   programs.zsh.enable = true;
@@ -117,20 +121,4 @@
 
   # Remove bloat
   documentation.nixos.enable = false;
-
-  # User settings
-  environment.localBinInPath = true;
-  environment.variables = {
-    XDG_CONFIG_HOME = "$HOME/.config";
-  };
-  environment.etc."xdg/user-dirs.defaults".text = ''
-    DESKTOP=.Desktop
-    DOWNLOAD=Downloads
-    TEMPLATES=.Templates
-    PUBLICSHARE=.Public
-    DOCUMENTS=Documents
-    MUSIC=Music
-    PICTURES=Pictures
-    VIDEOS=Videos
-  '';
 }

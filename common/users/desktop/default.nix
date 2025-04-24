@@ -22,7 +22,6 @@
     nautilus
     celluloid
   ];
-
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
       "firefox.desktop"
@@ -34,12 +33,11 @@
     "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
     "org/gnome/desktop/background".picture-uri = ".earthpaper/wallpaper.jpeg";
     "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
-
+    "org/gnome/settings-daemon/plugins/power".power-button-action = "hibernate";
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tiling = true;
       workspaces-only-on-primary = true;
-      # center-new-windows = true;
     };
     "org/gnome/desktop/wm/keybindings" = {
       toggle-fullscreen = ["<Super>f"];
