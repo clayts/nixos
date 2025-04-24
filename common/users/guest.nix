@@ -10,6 +10,7 @@ in {
   home-manager.users.${user} = {
     imports = [
       ./desktop
+      ./console
     ];
   };
 }
