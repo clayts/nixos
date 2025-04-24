@@ -104,13 +104,16 @@ sudo nix --extra-experimental-features nix-command  --extra-experimental-feature
 
 sudo nix --extra-experimental-features nix-command  --extra-experimental-features flakes run github:nix-community/disko/latest#disko -- --flake .#$HOSTNAME --mode mount
 
-cp -R . /mnt/etc/nixos
+sudo cp -R . /mnt/etc/nixos
 
 sudo nixos-enter --root /mnt -c """
+echo 'set root password:'
 passwd root
+echo 'set user password:'
 passwd user
+echo 'set guest password:'
 passwd guest
 chown -R user:users /mnt/etc/nixos
 """
 
-echo "Installation Complete!"
+echo "*** Installation Complete! ***"
