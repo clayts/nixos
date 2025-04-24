@@ -36,32 +36,22 @@
     cat "$target_dir/info.txt"
 
     rm -Rf $tmp_dir
+
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/background/picture-uri "'none'" &&
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/background/picture-uri "'$target_dir/image.jpeg'"
   '';
 in {
-  home.activation = {
-    init_earthpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -d "$HOME/.earthpaper" ]; then
-        mkdir -p $HOME/.earthpaper
-        touch $HOME/.earthpaper/image.jpeg
-
-       	${pkgs.dconf}/bin/dconf write /org/gnome/desktop/background/picture-uri "'none'" &&
-        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/background/picture-uri "'.earthpaper/image.jpeg'"
-      fi
-    '';
-  };
-
   systemd.user.services."earthpaper" = {
     Unit = {
       Description = "Earthpaper switcher";
-      # StartLimitIntervalSec = 0;
-      # StartLimitBurst = 0;
+      StartLimitBurst = 10; # Maximum retries
     };
 
     Service = {
       Type = "oneshot";
       ExecStart = "${earthpaper}/bin/earthpaper";
-      # Restart = "on-failure";
-      # RestartSec = 60 * 60;
+      Restart = "on-failure";
+      RestartSec = 30; # seconds between retries
     };
     Install.WantedBy = ["default.target"];
   };
@@ -69,7 +59,7 @@ in {
   systemd.user.timers."earthpaper" = {
     Unit.Description = "Timer for earthpaper service";
     Timer = {
-      Unit = "earthpaper";
+      Unit = "earthpaper.service";
       OnCalendar = "daily";
       Persistent = true;
     };
