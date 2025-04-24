@@ -3,7 +3,7 @@
 in {
   users.users.${user} = {
     description = "User";
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "libvirtd"];
     isNormalUser = true;
   };
 

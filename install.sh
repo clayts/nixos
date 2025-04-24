@@ -2,105 +2,103 @@
 
 set -euo pipefail
 
-if [[ "${1:-}" == "--finish" ]]; then
-    # Run your commands here
-    echo "Finishing up..."
-    echo "Set password for guest:"
-    passwd guest
-
-    echo "Set password for user:"
-    passwd user
-
-    echo "Granting ownership of /etc/nixos"
-    chown -R user:users /etc/nixos
-
-    echo "Installation complete!"
-
-    exit 0
-fi
-
-echo """
-WARNING! This script should only be run from a liveUSB, on a system which has been prepared appropriately.
-
-- The root partition must be unmounted, and available at /dev/disk/by-partlabel/root.
-- The boot partition must be unmounted, and available at /dev/disk/by-partlabel/boot.
-- If a swap partition is desired, it must be deactivated and available at /dev/disk/by-partlabel/swap.
-
-The 'Name' field in gparted determines how the device appears in /dev/disk/by-partlabel.
-"""
-
-# Get hostname from user
 read -p "Enter hostname for this system: " HOSTNAME
 if [[ -z "$HOSTNAME" ]]; then
-    echo "Error: Hostname cannot be empty"
+    echo "Error: Hostname cannot be blank"
     exit 1
 fi
 
-# Function to create initial hardware configuration directory
-create() {
-    mkdir -p "systems/$HOSTNAME"
-    echo """
-    {...}: {
-      imports = [
-      	./hardware.nix
+echo
+lsblk
+echo
 
-        ../common/os
-        ../common/users/guest
-        ../common/users/user
-      ];
-    }
-    """ > "systems/$HOSTNAME/default.nix"
-    git add systems/$HOSTNAME/default.nix
-}
-
-# Mount filesystems by partlabel
-echo "Mounting filesystems..."
-if ! sudo mount /dev/disk/by-partlabel/root /mnt; then
-    echo "Error: Failed to mount root filesystem"
+read -p "Enter target disk: " DISK
+if [[ -z "$DISK" ]]; then
+    echo "Error: Disk cannot be blank"
     exit 1
 fi
 
-sudo mkdir /mnt/boot
-if ! sudo mount -o umask=077 /dev/disk/by-partlabel/boot /mnt/boot; then
-    echo "Error: Failed to mount boot filesystem"
-    exit 1
-fi
+DISK_ID="$(ls -l /dev/disk/by-id/ | grep "$DISK$" | awk '{print $9}' | head -1)"
 
-# Activate swap if it exists
-if [[ -e /dev/disk/by-partlabel/swap ]]; then
-    echo "Activating swap..."
-    sudo swapon /dev/disk/by-partlabel/swap
-fi
+SWAP_SIZE="$(free -m | awk '/^Mem:/{print $2 * 2}')M"
 
-# Move configuration to /etc/nixos
-SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-echo "Moving configuration files..."
-sudo mkdir /mnt/etc
-sudo mv "$SCRIPT_DIR" /mnt/etc/nixos
-cd /mnt/etc/nixos
-
-# Create or update hardware configuration
-if [[ ! -d "systems/$HOSTNAME" ]]; then
-    create
-fi
-
-echo "Scanning hardware..."
-sudo nixos-generate-config --root /mnt --show-hardware-config > "systems/$HOSTNAME/hardware.nix"
-git add systems/$HOSTNAME/hardware.nix
-
-nano systems/$HOSTNAME/default.nix
-
-# Install NixOS
-echo "Installing NixOS..."
-if ! sudo nixos-install --flake .#$HOSTNAME --root /mnt; then
-    echo "Error: Installation failed"
-    exit 1
-fi
+mkdir $HOSTNAME
 
 echo """
-Success!
 
-Reboot, log in as root and run
+{...}: {
+  imports = [
+  	./hardware.nix
+    ./disks.nix
 
-/etc/nixos/install.sh --finish
-"""
+    ../common/os
+    ../common/users
+  ];
+}
+
+""" > $HOSTNAME/default.nix
+
+sudo nixos-generate-config --show-hardware-config --no-filesystems > $HOSTNAME/hardware.nix
+
+echo """
+
+{disko, ...}: {
+  imports = [
+    disko.nixosModules.disko
+  ];
+
+  disko.devices = {
+    disk = {
+      main = {
+        device = "/dev/disk/by-id/$DISK_ID";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions = {
+            boot = {
+              type = "EF00";
+              size = "1G";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = ["umask=0077"];
+              };
+            };
+            swap = {
+              size = "$SWAP_SIZE";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true;
+              };
+            };
+            root = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
+
+""" > $HOSTNAME/disks.nix
+
+git add $HOSTNAME
+
+echo "Check the files in $HOSTNAME"
+read -p "Press enter to continue or CTRL+C to abort" READY
+
+echo "Installing..."
+sudo nix run github:nix-community/disko/latest#disko-install -- --flake .#$HOSTNAME
+
+#move source into /mnt/etc/nixos
+#change owner
+#set passwords
