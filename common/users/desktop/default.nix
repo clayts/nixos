@@ -31,7 +31,7 @@
     "org/gnome/desktop/peripherals/touchpad".speed = 0.1;
     "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
     "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
-    "org/gnome/desktop/background".picture-uri = ".earthpaper/wallpaper.jpeg";
+    "org/gnome/desktop/background".picture-uri = ".earthpaper/image.jpeg";
     "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
     "org/gnome/settings-daemon/plugins/power".power-button-action = "hibernate";
     "org/gnome/mutter" = {
