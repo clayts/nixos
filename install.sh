@@ -16,32 +16,41 @@ if [ ! -b "$DISK" ]; then
     exit 1
 fi
 
-read -p "Enter hostname for this system: " HOSTNAME
+read -p "Enter the name of this system: " HOSTNAME
 if [[ -z "$HOSTNAME" ]]; then
-    echo "Error: Hostname cannot be blank"
+    echo "Error: name cannot be blank"
     exit 1
 fi
 
-SWAP_SIZE="$(free -m | awk '/^Mem:/{print $2 * 2}')M"
+if [ -d "$HOSTNAME" ]; then
+    echo "Using existing configuration..."
+else
+	echo "Creating new system..."
 
-mkdir $HOSTNAME
+	mkdir $HOSTNAME
 
-echo """
+	echo """
 
-{...}: {
-  imports = [
-  	./hardware.nix
-    ./disks.nix
+	{...}: {
+	  imports = [
+	  	./hardware.nix
+	    ./disks.nix
 
-    ../common/os
-    ../common/users
-  ];
-}
+	    ../common/os
+	    ../common/users
+	  ];
+	}
 
-""" > $HOSTNAME/default.nix
+	""" > $HOSTNAME/default.nix
+fi
 
+
+echo "Rescanning hardware..."
 sudo nixos-generate-config --show-hardware-config --no-filesystems > $HOSTNAME/hardware.nix
 
+SWAP_SIZE="$(free -m | awk '/^Mem:/{print $2 * 2}')M"
+
+echo ""
 echo """
 
 {inputs, ...}: {
@@ -97,6 +106,8 @@ git add $HOSTNAME
 
 echo "Check the files in $HOSTNAME"
 read -p "Press enter to continue or CTRL+C to abort" READY
+
+
 
 
 echo "Installing..."
