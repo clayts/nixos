@@ -4,8 +4,8 @@
     ./extensions.nix
     ./firefox.nix
     ./ghostty.nix
-    ./zed-editor.nix
     ./google-calendar.nix
+    ./zed-editor
     ./earthpaper
     ./templates
   ];

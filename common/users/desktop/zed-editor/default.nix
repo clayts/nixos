@@ -2,7 +2,6 @@
   programs.zed-editor = {
     enable = true;
     extensions = [
-      "colorizer"
       "colored-zed-icons-theme"
     ];
     package = pkgs.symlinkJoin {
@@ -20,6 +19,7 @@
           --prefix PATH : "${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin"
       '';
     };
+    themes = {custom = ./theme.json;};
     userSettings = {
       hard_tabs = true;
       git_panel = {
@@ -35,7 +35,10 @@
         dock = "left";
         version = "2";
       };
-
+      project_panel = {indent_guides = {show = "never";};};
+      indent_guides = {
+        enabled = false;
+      };
       chat_panel = {
         dock = "right";
       };
@@ -79,7 +82,7 @@
       };
 
       ui_font_family = ".SystemUIFont";
-      ui_font_size = 15;
+      ui_font_size = 16;
       ui_font_weight = 300;
       restore_on_startup = "none";
       soft_wrap = "bounded";
@@ -90,22 +93,7 @@
       theme = {
         mode = "dark";
         light = "One Light";
-        dark = "Colorizer";
-      };
-      "experimental.theme_overrides" = {
-        syntax = {
-          comment = {
-            font_style = "italic";
-          };
-          "variable.parameter" = {
-            font_style = "normal";
-          };
-        };
-        players = [
-          {
-            cursor = "#F00";
-          }
-        ];
+        dark = "Custom";
       };
 
       languages = {
