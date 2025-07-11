@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # ghostty spews out multiple errors per second in logs if not silenced
   ghostty-silent = pkgs.writeShellScript "ghostty-silent" ''
     ${pkgs.ghostty}/bin/ghostty $* 2> /dev/null
@@ -25,9 +29,14 @@ in {
     enable = true;
     enableZshIntegration = true;
     settings = {
+      keybind = [
+        "ctrl+c=copy_to_clipboard"
+        "ctrl+v=paste_from_clipboard"
+        ''ctrl+k=text:\x03''
+      ];
       # ghostty +list-fonts
       # font-family = "IBM Plex Mono"
-      font-family = "Cascadia Code";
+      font-family = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0)}";
       font-size = 10;
       adjust-cell-height = -2;
 

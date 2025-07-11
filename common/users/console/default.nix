@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -19,6 +20,7 @@
       fd
       git
       gh
+      aichat
     ];
     sessionVariables = {
       EDITOR = "micro";
@@ -57,8 +59,8 @@
       edit = "$EDITOR";
       open = "xdg-open";
       l = "lsd --almost-all --long --git --group-dirs first --no-symlink --date relative";
-      ls = "lsd --group-dirs first";
-      lt = "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
+      ls = lib.mkForce "lsd --group-dirs first";
+      lt = lib.mkForce "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
       cd = "z";
     };
     sessionVariables = {

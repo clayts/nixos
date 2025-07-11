@@ -40,7 +40,7 @@ in {
       displayManager.gdm.enable = true;
     };
     gnome = {
-      core-utilities.enable = false;
+      core-apps.enable = false;
       gnome-online-accounts.enable = true;
     };
   };

@@ -10,7 +10,7 @@
     ./templates
   ];
   home.packages = with pkgs; [
-    lutris
+    steam
     gnome-firmware
     loupe
     file-roller
@@ -21,6 +21,7 @@
     eyedropper
     nautilus
     celluloid
+    gitg
   ];
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
