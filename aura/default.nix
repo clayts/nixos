@@ -1,15 +1,12 @@
-
-
-{pkgs,...}: {
+{pkgs, ...}: {
   imports = [
-  	./hardware.nix
+    ./hardware.nix
     ./disks.nix
 
     ../common/os
     ../common/users
   ];
-  
-  
+
   # Prevent bluetooth from automatically starting on boot
   hardware.bluetooth.powerOnBoot = false;
 
@@ -57,17 +54,4 @@
   in {
     ALSA_CONFIG_UCM2 = "${alsa-ucm-conf-git}/share/alsa/ucm2";
   };
-
-  ## Touchpad
-  environment.etc."libinput/local-overrides.quirks".text = ''
-    # The ThinkPad X9 15 Gen 1 Forcepad touchpad is not
-    # detected as a pressure pad
-    [Lenovo ThinkPad X9 15 Gen 1]
-    MatchName=*GXTP5100*
-    MatchDMIModalias=dmi:*svnLENOVO:*pvrThinkPadX9-15Gen1*:*
-    MatchUdevType=touchpad
-    ModelPressurePad=1
-  '';
 }
-
-
