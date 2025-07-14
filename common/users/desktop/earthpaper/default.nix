@@ -49,7 +49,7 @@ in {
       Restart = "on-failure";
       RestartSec = 30; # seconds between retries
     };
-    Install.WantedBy = ["default.target"];
+    # Install.WantedBy = ["default.target"];
   };
 
   systemd.user.timers."earthpaper" = {
