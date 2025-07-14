@@ -34,11 +34,11 @@ in {
 
   # GNOME
   services = {
-    xserver = {
-      enable = true;
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-    };
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+    # xserver = {
+    #   enable = true;
+    # };
     gnome = {
       core-apps.enable = false;
       gnome-online-accounts.enable = true;
