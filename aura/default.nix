@@ -31,7 +31,7 @@
       intel-compute-runtime
       vpl-gpu-rt
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965
-      intel-ocl
+      # intel-ocl
       libvdpau-va-gl
     ];
   };

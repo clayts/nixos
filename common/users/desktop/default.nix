@@ -10,7 +10,6 @@
     ./templates
   ];
   home.packages = with pkgs; [
-    steam
     gnome-firmware
     loupe
     file-roller
@@ -22,6 +21,7 @@
     nautilus
     celluloid
     gitg
+    papers
   ];
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [

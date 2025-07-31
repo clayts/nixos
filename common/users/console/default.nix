@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }: {
   imports = [
@@ -66,7 +67,7 @@
     sessionVariables = {
       GREP_OPTIONS = "--color=auto";
     };
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     historySubstringSearch.enable = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
