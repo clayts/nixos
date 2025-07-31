@@ -160,7 +160,8 @@
         };
         rust-analyzer = {
           "binary" = {
-            "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+            "path" = "rust-analyzer";
+            # "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
             args = [];
           };
           initialization_options = {
