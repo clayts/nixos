@@ -87,6 +87,12 @@
         dock = "left";
         button = false;
       };
+      disable_ai = true;
+      diagnostics = {
+        inline = {
+          enabled = true;
+        };
+      };
       features = {
         edit_prediction_provider = "zed";
       };
@@ -160,8 +166,8 @@
         };
         rust-analyzer = {
           "binary" = {
-            "path" = "rust-analyzer";
-            # "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+            # "path" = "rust-analyzer";
+            "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
             args = [];
           };
           initialization_options = {
