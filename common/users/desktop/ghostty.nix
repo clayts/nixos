@@ -2,29 +2,13 @@
   config,
   pkgs,
   ...
-}: let
-  # ghostty spews out multiple errors per second in logs if not silenced
-  ghostty-silent = pkgs.writeShellScript "ghostty-silent" ''
-    ${pkgs.ghostty}/bin/ghostty $* 2> /dev/null
-  '';
-in {
+}: {
   # This allows gnome to use ghostty as a default terminal when running .desktop files that require a terminal
   home.packages = [
     (pkgs.writeShellScriptBin "xterm" ''
-      ${ghostty-silent} $*
+      ${pkgs.ghostty} $*
     '')
   ];
-
-  home.file.".local/share/applications/com.mitchellh.ghostty.desktop".text = let
-    original =
-      builtins.readFile
-      "${pkgs.ghostty}/share/applications/com.mitchellh.ghostty.desktop";
-  in
-    builtins.replaceStrings
-    ["Exec=ghostty"]
-    ["Exec=${ghostty-silent}"]
-    original;
-
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;

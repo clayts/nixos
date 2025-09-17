@@ -47,7 +47,7 @@ in {
       Type = "oneshot";
       ExecStart = "${earthpaper}/bin/earthpaper";
       Restart = "on-failure";
-      RestartSec = 30; # seconds between retries
+      RestartSec = 900; # seconds between retries
     };
     # Install.WantedBy = ["default.target"];
   };

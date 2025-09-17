@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./boxes.nix
     ./desktop.nix
     ./steam.nix
     ./home-manager.nix
