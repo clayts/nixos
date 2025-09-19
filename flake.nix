@@ -19,8 +19,21 @@
     };
   };
   outputs = inputs: {
+    devShells =
+      inputs.nixpkgs.lib.genAttrs
+      ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"] (
+        system: let
+          pkgs = import inputs.nixpkgs {inherit system;};
+        in {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              nixd
+            ];
+          };
+        }
+      );
     nixosConfigurations = with builtins; let
-      systems =
+      machines =
         filter
         (path: pathExists (./. + "/${path}/default.nix"))
         (attrNames (readDir ./.));
@@ -33,6 +46,6 @@
           ];
         };
     in
-      inputs.nixpkgs.lib.genAttrs systems os;
+      inputs.nixpkgs.lib.genAttrs machines os;
   };
 }

@@ -8,10 +8,10 @@
       name = "zed-editor-with-langservers";
       paths = with pkgs; [
         zed-editor
-        tailwindcss-language-server
-        package-version-server
-        nixd
-        alejandra
+        # tailwindcss-language-server
+        # package-version-server
+        # nixd
+        # alejandra
       ];
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
@@ -21,19 +21,19 @@
     };
     themes = {custom = ./theme.json;};
     userSettings = {
-      assistant = {
-        default_model = {
-          model = "deepseek/deepseek-chat-v3-0324:free";
-          provider = "openai";
-          # model = "claude-3-5-sonnet-latest";
-          # provider = "zed.dev";
-        };
-        dock = "left";
-        version = "2";
-      };
+      # assistant = {
+      #   default_model = {
+      #     model = "deepseek/deepseek-chat-v3-0324:free";
+      #     provider = "openai";
+      #     # model = "claude-3-5-sonnet-latest";
+      #     # provider = "zed.dev";
+      #   };
+      #   dock = "left";
+      #   version = "2";
+      # };
       language_models = {
         openai = {
-          version = "1";
+          # version = "1";
           api_url = "https://openrouter.ai/api/v1";
           "available_models" = [
             {
@@ -161,15 +161,21 @@
       };
 
       lsp = {
+        # json-language-server = {
+        #   # binary = {path_lookup = true;};
+        # };
         nixd = {
-          settings = {formatting = {command = ["alejandra"];};};
+          # binary = {path_lookup = true;};
+          # binary = {path = "${pkgs.nixd}/bin/nixd";};
+          settings = {formatting = {command = ["${pkgs.alejandra}/bin/alejandra"];};};
         };
         rust-analyzer = {
-          "binary" = {
-            # "path" = "rust-analyzer";
-            "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-            args = [];
-          };
+          # binary = {path_lookup = true;};
+          # "binary" = {
+          #   # "path" = "rust-analyzer";
+          #   "path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+          #   args = [];
+          # };
           initialization_options = {
             # checkOnSave = {
             #   command = "clippy";

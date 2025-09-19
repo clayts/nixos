@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = [
     (pkgs.writeShellScriptBin "hostfetch" ''
-      logo=$(${pkgs.figlet}/bin/figlet -f ${./future.tlf} "$(hostname)")
+      logo=$(${pkgs.toilet}/bin/toilet --font future "$(hostname)")
 
       loltext=$(echo "$logo" | ${pkgs.dotacat}/bin/dotacat -F 0.5)
 
@@ -20,6 +20,7 @@
       echo "''${style_bold}   OS: ''${style_normal}$os"
       echo -n "$loltext" | head -n3 | tail -n1 | tr -d '\n'
       echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
+
     '')
   ];
 }
