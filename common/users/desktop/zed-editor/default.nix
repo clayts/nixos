@@ -29,6 +29,7 @@
       diagnostics.inline.enabled = true;
       features.edit_prediction_provider = "zed";
       terminal.button = false;
+      debugger.button = false;
       outline_panel.button = false;
       project_panel.dock = "right";
       collaboration_panel.button = false;
