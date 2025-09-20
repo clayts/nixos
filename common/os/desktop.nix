@@ -36,9 +36,6 @@ in {
   services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    # xserver = {
-    #   enable = true;
-    # };
     gnome = {
       core-apps.enable = false;
       gnome-online-accounts.enable = true;
