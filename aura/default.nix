@@ -6,10 +6,6 @@
     ../common/os
     ../common/users
   ];
-
-  # Prevent bluetooth from automatically starting on boot
-  hardware.bluetooth.powerOnBoot = false;
-
   # Remap star key to play button
   programs.dconf.profiles.user.databases = [{settings."org/gnome/settings-daemon/plugins/media-keys".play = ["Favorites"];}];
 
