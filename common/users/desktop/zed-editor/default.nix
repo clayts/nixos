@@ -10,12 +10,8 @@
         zed-editor
         tailwindcss-language-server
         package-version-server
+        vscode-langservers-extracted
       ];
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/zeditor \
-          --prefix PATH : "${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin"
-      '';
     };
     themes.custom = ./theme.json;
     userSettings = {
