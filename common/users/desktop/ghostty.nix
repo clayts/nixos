@@ -3,12 +3,7 @@
   pkgs,
   ...
 }: {
-  # This allows gnome to use ghostty as a default terminal when running .desktop files that require a terminal
-  home.packages = [
-    (pkgs.writeShellScriptBin "xterm" ''
-      ${pkgs.ghostty} $*
-    '')
-  ];
+  home.packages = [(pkgs.writeShellScriptBin "xterm" ''${pkgs.ghostty} $*'')]; # This allows gnome to use ghostty as a default terminal when running .desktop files that require a terminal
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
@@ -18,7 +13,7 @@
         "ctrl+v=paste_from_clipboard"
         ''ctrl+k=text:\x03''
       ];
-      # ghostty +list-fonts
+
       font-family = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0)}";
       font-size = 10;
       adjust-cell-height = -2;
