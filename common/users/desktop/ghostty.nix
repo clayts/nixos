@@ -19,16 +19,12 @@
         ''ctrl+k=text:\x03''
       ];
       # ghostty +list-fonts
-      # font-family = "IBM Plex Mono"
       font-family = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0)}";
       font-size = 10;
       adjust-cell-height = -2;
 
       # ghostty +list-themes
-      # theme = "Dark Modern"
-      # theme = "C64"
       theme = "Adwaita Dark";
-      # theme = "IR_Black";
       background = "#000000";
 
       command = "SHLVL=0; zsh";
