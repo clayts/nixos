@@ -3,6 +3,7 @@
     enable = true;
     extensions = [
       "colored-zed-icons-theme"
+      "superhtml"
     ];
     package = pkgs.symlinkJoin {
       name = "zed-editor-with-langservers";
@@ -54,8 +55,10 @@
       node.path = "${pkgs.nodejs}/bin/node";
 
       languages = {
-        Nix = {
-          language_servers = ["nixd" "!nil"];
+        Nix.language_servers = ["nixd"];
+        HTML = {
+          language_servers = ["superhtml"];
+          formatter.language_server.name = "superhtml";
         };
       };
 
