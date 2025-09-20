@@ -9,6 +9,7 @@
       paths = with pkgs; [
         zed-editor
         tailwindcss-language-server
+        package-version-server
       ];
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
