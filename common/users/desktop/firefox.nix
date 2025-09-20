@@ -42,21 +42,17 @@
           "browser.cache.disk.enable" = false; # Be kind to hard drive
 
           "gnomeTheme.hideSingleTab" = true;
-          # "browser.tabs.tabmanager.enabled" = true; # TODO: Check this is necessary
           "browser.uiCustomization.state" = {
             "placements" = {
               "widget-overflow-fixed-list" = [];
               "unified-extensions-area" = ["ublock0_raymondhill_net-browser-action"];
-              "nav-bar" = ["back-button" "forward-button" "stop-reload-button" "customizableui-special-spring1" "urlbar-container" "new-tab-button" "customizableui-special-spring2" "downloads-button" "unified-extensions-button"];
-              # "firefox-view-button"
+              "nav-bar" = ["back-button" "forward-button" "stop-reload-button" "customizableui-special-spring1" "firefox-view-button" "urlbar-container" "new-tab-button" "customizableui-special-spring2" "downloads-button" "unified-extensions-button"];
               "toolbar-menubar" = ["menubar-items"];
               "TabsToolbar" = ["tabbrowser-tabs" "alltabs-button"];
               "vertical-tabs" = [];
               "PersonalToolbar" = ["import-button" "personal-bookmarks"];
             };
-            "dirtyAreaCache" = ["nav-bar" "vertical-tabs" "PersonalToolbar" "unified-extensions-area" "widget-overflow-fixed-list" "TabsToolbar" "toolbar-menubar"];
             "currentVersion" = 20;
-            "newElementCount" = 4;
           };
           "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
