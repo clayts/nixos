@@ -60,7 +60,7 @@
       };
 
       lsp = {
-        nixd.settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
+        nixd.settings.formatting.command = ["alejandra"];
         rust-analyzer.initialization_options.check.command = "clippy";
       };
     };
