@@ -29,6 +29,8 @@
             packages = with pkgs; [
               nixd
               alejandra
+              basedpyright
+              python313Packages.terminaltexteffects
             ];
           };
         }

@@ -7,10 +7,10 @@
 }: {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
-    ./hostfetch
     ./lsd.nix
     ./micro.nix
     ./scripts
+    ./rizzfetch
   ];
 
   home = {
@@ -72,7 +72,7 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     initContent = ''
-      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && hostfetch
+      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzfetch
 
       # keybindings
       bindkey "$terminfo[kcuu1]" history-substring-search-up
