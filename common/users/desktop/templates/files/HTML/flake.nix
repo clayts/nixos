@@ -9,6 +9,9 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              nixd
+              alejandra
+
               python313Packages.weasyprint
             ];
           };

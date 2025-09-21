@@ -12,7 +12,7 @@
               nixd
               alejandra
 
-              pandoc
+              python314
             ];
           };
         }
