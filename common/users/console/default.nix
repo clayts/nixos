@@ -10,7 +10,7 @@
     ./lsd.nix
     ./micro.nix
     ./scripts
-    ./rizzfetch
+    ./rizzlefetch
   ];
 
   home = {
@@ -72,7 +72,7 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     initContent = ''
-      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzfetch
+      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzlefetch
 
       # keybindings
       bindkey "$terminfo[kcuu1]" history-substring-search-up

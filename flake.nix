@@ -31,6 +31,7 @@
               alejandra
               basedpyright
               python313Packages.terminaltexteffects
+              toilet
             ];
           };
         }

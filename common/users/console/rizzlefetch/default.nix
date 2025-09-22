@@ -1,0 +1,49 @@
+{pkgs, ...}: let
+  pythonEnv = pkgs.python313.withPackages (ps:
+    with ps; [
+      terminaltexteffects
+    ]);
+in {
+  home.packages = [
+    (pkgs.writeScriptBin "rizzlefetch" ''
+    export PATH=${pkgs.lib.makeBinPath [pkgs.toilet]}:$PATH
+
+    cleanup() {
+        [ -n "$PYTHON_PID" ] && kill "$PYTHON_PID" 2>/dev/null
+        stty sane
+        printf '\033[?25h'
+    }
+    trap cleanup EXIT INT
+
+    # Launch Python in background, stdin detached (with -u for unbuffered output)
+    ${pythonEnv}/bin/python -u ${./script.py} < /dev/null &
+    PYTHON_PID=$!
+
+    stty raw -echo
+    printf '\033[?25l'  # Hide cursor immediately after raw mode (ensures consistent visuals)
+
+    KEY=""  # Explicitly initialize
+
+    # Poll for key
+    while kill -0 "$PYTHON_PID" 2>/dev/null; do
+        if read -N1 -t 0 KEY 2>/dev/null; then
+            kill "$PYTHON_PID"
+            wait "$PYTHON_PID" 2>/dev/null
+            stty sane  # Already here for keypress case
+            echo -n "$KEY"  # Pass through
+            printf '\033[?25h\033[2J\033[H'  # Show cursor + clear
+            break
+        fi
+        sleep 0.016
+    done
+
+    # No-keypress completion: Restore terminal NOW to force output flush and prompt separation
+    if [ -z "$KEY" ]; then
+        wait "$PYTHON_PID" 2>/dev/null  # Wait for full process termination and I/O flush
+        stty sane  # Critical: Restore cooked mode immediately, so zsh renders output + advances line
+        printf '\n'  # Ensure newline for clean prompt (zsh % will follow on new line)
+    fi
+    # Script exits here -> trap runs (stty sane again = no-op, cursor show if needed)
+    '')
+  ];
+}
