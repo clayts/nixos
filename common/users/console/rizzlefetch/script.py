@@ -7,7 +7,8 @@ import subprocess
 import sys
 import time
 
-from terminaltexteffects.effects.effect_expand import Expand
+# from terminaltexteffects.effects.effect_expand import Expand
+from terminaltexteffects.effects.effect_random_sequence import RandomSequence
 from terminaltexteffects.effects.effect_slide import Slide
 from terminaltexteffects.utils.graphics import Color, Gradient
 
@@ -96,9 +97,10 @@ def logo_keyframe() -> list[str]:
 	return big_text(hostname())
 
 def logo() -> list[list[str]]:
-	effect = Expand("\n".join(logo_keyframe()))
+	effect = RandomSequence("\n".join(logo_keyframe()))
 	effect.terminal_config.frame_rate = 0
-	effect.effect_config.movement_speed = 0.1
+	effect.effect_config.starting_color=Color("ffffff")
+	# effect.effect_config.movement_speed = 0.25
 	effect.effect_config.final_gradient_stops = rainbow(3)
 	effect.effect_config.final_gradient_direction = Gradient.Direction.DIAGONAL
 	effect.effect_config.final_gradient_frames=12
@@ -167,16 +169,20 @@ def frames() -> list[list[str]]:
 
 # PLAY #############################################################################################
 def play(fps: int) -> None:
-    if fps <= 0:
-        delay = 0.0
-    else:
-        delay = 1.0 / fps
+	if fps <= 0:
+		delay = 0.0
+	else:
+		delay = 1.0 / fps
 
-    # Play animation
-    for frame in frames():
-        _ = sys.stdout.write("\033[2J\033[H" + '\r\n'.join(frame))
-        _ = sys.stdout.flush()
-        time.sleep(delay)
+	# Play animation
+	for frame in frames():
+		start_time = time.perf_counter()
+		content = "\033[2J\033[H" + '\r\n'.join(frame)
+		_ =	sys.stdout.write(content)
+		_ =	sys.stdout.flush()
+		elapsed = time.perf_counter() - start_time
+		sleep_time = max(0.0, delay - elapsed)
+		time.sleep(sleep_time)
 
 # MAIN #############################################################################################
 play(120)
