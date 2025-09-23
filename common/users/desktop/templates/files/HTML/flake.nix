@@ -11,7 +11,7 @@
             packages = with pkgs; [
               nixd
               alejandra
-
+              superhtml
               python313Packages.weasyprint
             ];
           };

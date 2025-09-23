@@ -11,7 +11,6 @@
             packages = with pkgs; [
               nixd
               alejandra
-
               pandoc
             ];
           };
