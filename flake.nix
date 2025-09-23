@@ -29,6 +29,7 @@
             packages = with pkgs; [
               nixd
               alejandra
+              superhtml
               basedpyright
               python313Packages.terminaltexteffects
               toilet
