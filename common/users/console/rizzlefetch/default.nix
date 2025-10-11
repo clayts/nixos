@@ -33,7 +33,6 @@ in {
               clear
               exit 0
           fi
-          sleep 0.016
       done
 
       wait "$PYTHON_PID" 2>/dev/null  # Wait for full process termination and I/O flush
