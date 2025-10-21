@@ -13,6 +13,7 @@
               alejandra
               python314
               basedpyright
+              ruff
             ];
           };
         }
