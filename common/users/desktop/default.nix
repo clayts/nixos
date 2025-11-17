@@ -17,6 +17,7 @@
     gnome-system-monitor
     gnome-characters
     gnome-logs
+    gnome-clocks
     eyedropper
     nautilus
     celluloid
