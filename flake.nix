@@ -33,6 +33,7 @@
               basedpyright
               python313Packages.terminaltexteffects
               toilet
+              ruff
             ];
           };
         }
