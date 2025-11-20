@@ -4,6 +4,7 @@
     appindicator
     alphabetical-app-grid
     just-perfection
+    auto-power-profile
   ];
 in {
   programs.gnome-shell = {
