@@ -36,7 +36,7 @@ in {
       done
 
       wait "$PYTHON_PID" 2>/dev/null  # Wait for full process termination and I/O flush
-      stty sane  # Critical: Restore cooked mode immediately, so zsh renders output + advances line
+      stty sane  # Restore cooked mode immediately, so zsh renders output + advances line
       printf '\n\n'
     '')
   ];
