@@ -1,4 +1,15 @@
 {inputs, ...}: {
+  home.file.".mozilla/managed-storage/uBlock0@raymondhill.net.json".text = builtins.toJSON {
+    name = "uBlock0@raymondhill.net";
+    description = "_";
+    type = "storage";
+    data = {
+      userSettings = [
+        ["prefetchingDisabled" "false"]
+      ];
+    };
+  };
+
   programs.firefox = {
     enable = true;
 
@@ -27,8 +38,9 @@
           @import "${inputs.firefox-theme}/userContent.css";
         '';
         extraConfig = builtins.readFile "${inputs.firefox-theme}/configuration/user.js";
-
         settings = {
+          # "extensions.uBlock0@raymondhill.net.general.prefetch-disable" = false;
+          "browser.tabs.groups.enabled" = false;
           "extensions.pocket.enabled" = false;
           "browser.newtabpage.pinned" = "";
           "browser.topsites.contile.enabled" = false;
