@@ -21,7 +21,6 @@
       fd
       git
       gh
-      aichat
     ];
     sessionVariables = {
       EDITOR = "micro";
