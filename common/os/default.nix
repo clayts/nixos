@@ -60,9 +60,10 @@
 
   # Suspend
   systemd.sleep.extraConfig = ''
-    HibernateDelaySec=180min
+    HibernateDelaySec=24h
   '';
   services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+
   # Zsh
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
