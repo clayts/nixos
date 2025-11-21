@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.file.".mozilla/managed-storage/uBlock0@raymondhill.net.json".text = builtins.toJSON {
     name = "uBlock0@raymondhill.net";
     description = "_";
@@ -12,6 +16,7 @@
 
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox-beta;
 
     policies = {
       DisableTelemetry = true;
