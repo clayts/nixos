@@ -99,7 +99,6 @@
 
   # Networking
   networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
   services.avahi = {
     enable = true;
     nssmdns4 = true;
