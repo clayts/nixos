@@ -14,7 +14,7 @@
     loupe
     file-roller
     gnome-calculator
-    gnome-system-monitor
+    resources
     gnome-characters
     gnome-logs
     gnome-clocks
