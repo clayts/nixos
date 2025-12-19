@@ -9,7 +9,6 @@
     inputs.nix-index-database.homeModules.nix-index
     ./lsd.nix
     ./micro.nix
-    ./scripts
     ./rizzlefetch
   ];
 
