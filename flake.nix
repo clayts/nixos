@@ -62,7 +62,7 @@
     nixosConfigurations = with builtins; let
       machines =
         filter
-        (path: pathExists (./. + "/${path}/default.nix"))
+        (directory: pathExists (./. + "/${directory}/default.nix"))
         (attrNames (readDir ./.));
       os = name:
         inputs.nixpkgs.lib.nixosSystem {
