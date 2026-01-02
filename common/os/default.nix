@@ -119,4 +119,7 @@
 
   # Remove bloat
   documentation.nixos.enable = false;
+
+  # ADB
+  programs.adb.enable = true;
 }
