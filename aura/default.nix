@@ -52,5 +52,5 @@
   #     modDirVersion = "6.17.7";
   #   };
   # }));
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_17;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
 }
