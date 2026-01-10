@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./desktop.nix
+    ./console.nix
     ./steam.nix
     ./home-manager.nix
   ];
@@ -119,7 +120,4 @@
 
   # Remove bloat
   documentation.nixos.enable = false;
-
-  # ADB
-  programs.adb.enable = true;
 }

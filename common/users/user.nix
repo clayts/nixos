@@ -7,7 +7,6 @@ in {
       "wheel" # gives access to sudo
       "libvirtd" # gives access to boxes
       "networkmanager" # allows setting networks system-wide
-      "adbusers" # allows adb
     ];
     isNormalUser = true;
   };
