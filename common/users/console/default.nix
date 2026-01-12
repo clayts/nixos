@@ -9,7 +9,6 @@
     inputs.nix-index-database.homeModules.nix-index
     ./lsd.nix
     ./micro.nix
-    ./scripts
     ./rizzlefetch
   ];
 
@@ -71,7 +70,8 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     initContent = ''
-      [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzlefetch
+      [[ -o interactive ]] && [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzlefetch && echo # TODO fixme
+      echo
 
       # keybindings
       bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -81,6 +81,17 @@
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
     '';
+    # initContent = ''
+    #   # [[ -o interactive ]] && [[ -n $DISPLAY ]] && [[ $SHLVL -eq 1 ]] && rizzlefetch # TODO fixme
+
+    #   # keybindings
+    #   bindkey "$terminfo[kcuu1]" history-substring-search-up
+    #   bindkey "$terminfo[kcud1]" history-substring-search-down
+
+    #   bindkey  "^[[H"   beginning-of-line
+    #   bindkey  "^[[F"   end-of-line
+    #   bindkey  "^[[3~"  delete-char
+    # '';
   };
   programs.zoxide = {
     enable = true;

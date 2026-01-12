@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }: let
   interface = {
@@ -39,6 +38,7 @@ in {
     gnome = {
       core-apps.enable = false;
       gnome-online-accounts.enable = true;
+      gnome-remote-desktop.enable = true;
     };
   };
 
@@ -70,7 +70,6 @@ in {
     {
       settings = {
         "org/gnome/desktop/interface" = interface;
-        "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);};
       };
     }
   ];

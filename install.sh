@@ -120,7 +120,6 @@ passwd user
 echo 'set guest password:'
 passwd guest
 chown -R user:users /etc/nixos
-rizzlefetch
 """
 
 echo "*** Installation Complete! ***"

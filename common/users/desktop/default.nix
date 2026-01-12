@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./fonts.nix
     ./extensions.nix
@@ -14,7 +18,7 @@
     loupe
     file-roller
     gnome-calculator
-    gnome-system-monitor
+    resources
     gnome-characters
     gnome-logs
     gnome-clocks
@@ -49,5 +53,6 @@
       switch-applications = ["<Alt>Tab"];
       switch-applications-backward = ["<Shift><Alt>Tab"];
     };
+    "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);};
   };
 }

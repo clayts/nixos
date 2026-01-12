@@ -122,12 +122,27 @@ def logo() -> list[list[str]]:
 
 # SEPARATOR ########################################################################################
 def separator_keyframe() -> list[str]:
-    # ""#""#""#"󰗮"#""#""#"󱄅"#"󰿟"#"󰿠"#"󰆍"#""#""
+    # ""#""#""#"󰗮"#""#""#"󱄅"#"󰿟"#"󰿠"#"󰆍"#""#""#󰻀#󰏗#
     return [
-        "   ┏╸",
-        "  ╺┫ 󰏗",
-        "   ┗╸󰻀",
+        "  󰟀 ❯",
+        "  󰏗 ❯",
+        "  󰻀 ❯",
     ]
+
+
+# def separator() -> list[list[str]]:
+#     effect = RandomSequence("\n".join(separator_keyframe()))
+#     effect.terminal_config.frame_rate = 0
+#     effect.effect_config.starting_color = Color("000000")
+#     # effect.effect_config.movement_speed = 0.25
+#     # effect.effect_config.final_gradient_stops = rainbow(3)
+#     effect.effect_config.final_gradient_stops = (
+#         Color("333333"),
+#         Color("555555"),
+#     )
+#     effect.effect_config.final_gradient_direction = Gradient.Direction.DIAGONAL
+#     effect.effect_config.final_gradient_frames = 3
+#     return [frame.split("\n") for frame in effect]
 
 
 def separator() -> list[list[str]]:
@@ -135,9 +150,9 @@ def separator() -> list[list[str]]:
     effect.effect_config.movement_speed = 0.04
     effect.effect_config.final_gradient_direction = Gradient.Direction.HORIZONTAL
     effect.terminal_config.frame_rate = 0
-    effect.effect_config.final_gradient_steps = 10
+    effect.effect_config.final_gradient_steps = 1
     effect.effect_config.final_gradient_frames = 1
-    effect.effect_config.reverse_direction = True
+    effect.effect_config.reverse_direction = False
     effect.effect_config.final_gradient_stops = (
         Color("333333"),
         Color("555555"),
@@ -172,20 +187,50 @@ def kernel_name() -> str:
 
 def info_keyframe() -> list[str]:
     return [
-        " " + hardware_name(),
-        " " + distro_name(),
-        " " + kernel_name(),
+        "" + hardware_name(),
+        "" + distro_name(),
+        "" + kernel_name(),
     ]
+
+
+# def info() -> list[list[str]]:
+#     effect = RandomSequence("\n".join(info_keyframe()))
+#     effect.terminal_config.frame_rate = 0
+#     effect.effect_config.starting_color = Color("ffffff")
+#     # effect.effect_config.movement_speed = 0.25
+#     # effect.effect_config.final_gradient_stops = rainbow(3)
+#     effect.effect_config.final_gradient_stops = (
+#         # Color("333333"),
+#         Color("cccccc"),
+#     )
+#     effect.effect_config.final_gradient_direction = Gradient.Direction.VERTICAL
+#     effect.effect_config.final_gradient_frames = 3
+#     return [frame.split("\n") for frame in effect]
 
 
 def info() -> list[list[str]]:
     effect = Slide("\n".join(info_keyframe()))
-    effect.terminal_config.frame_rate = 0
-    effect.effect_config.movement_speed = 1
-    effect.effect_config.final_gradient_frames = 2
-    effect.effect_config.final_gradient_stops = (Color("eeeeee"),)
+    effect.effect_config.movement_speed = 2
     effect.effect_config.final_gradient_direction = Gradient.Direction.HORIZONTAL
-    return [frame.split("\n") for frame in effect]
+    effect.terminal_config.frame_rate = 0
+    effect.effect_config.final_gradient_steps = 10
+    effect.effect_config.final_gradient_frames = 1
+    effect.effect_config.reverse_direction = False
+    effect.effect_config.final_gradient_stops = (
+        # Color("333333"),
+        Color("cccccc"),
+    )
+    return [[line + " " for line in frame.split("\n")] for frame in effect]
+
+
+# def info() -> list[list[str]]:
+#     effect = Slide("\n".join(info_keyframe()))
+#     effect.terminal_config.frame_rate = 0
+#     effect.effect_config.movement_speed = 1
+#     effect.effect_config.final_gradient_frames = 2
+#     effect.effect_config.final_gradient_stops = (Color("eeeeee"),)
+#     effect.effect_config.final_gradient_direction = Gradient.Direction.HORIZONTAL
+#     return [frame.split("\n") for frame in effect]
 
 
 # COMPOSE ##########################################################################################
@@ -212,4 +257,4 @@ def play(fps: int) -> None:
 
 
 # MAIN #############################################################################################
-play(240)
+play(360)

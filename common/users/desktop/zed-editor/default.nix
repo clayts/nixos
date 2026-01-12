@@ -1,4 +1,17 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  # overlay = self: super: {
+  #   zed-editor = super.zed-editor.overrideAttrs (prev: {
+  #     version = "main";
+  #     src = pkgs.fetchFromGitHub {
+  #       owner = "clayts";
+  #       repo = "zed";
+  #       rev = "main";
+  #       sha256 = "";
+  #     };
+  #   });
+  # };
+in {
+  # nixpkgs.overlays = [overlay];
   programs.zed-editor = {
     enable = true;
     extensions = [
