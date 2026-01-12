@@ -39,18 +39,4 @@
     intel-vaapi-driver
     intel-media-driver
   ];
-
-  # Workarounds
-  # necessary due to audio bug in 6.17.8
-  # boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor (pkgs.linux_6_17.override {
-  #   argsOverride = rec {
-  #     src = pkgs.fetchurl {
-  #       url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-  #       sha256 = "sha256-3fLqDUQ54dVxNr42IxAq+UWPYB9bHLd+gyRuiK6gnQ4=";
-  #     };
-  #     version = "6.17.7";
-  #     modDirVersion = "6.17.7";
-  #   };
-  # }));
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
 }
