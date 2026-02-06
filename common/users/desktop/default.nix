@@ -27,6 +27,8 @@
     celluloid
     gitg
     papers
+    musescore
+    impression
   ];
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
