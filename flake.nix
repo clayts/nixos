@@ -48,8 +48,6 @@
                     git commit ./flake.lock -m "Update $(date)"
                 fi
               '')
-              nixd
-              alejandra
               superhtml
               basedpyright
               python313Packages.terminaltexteffects
