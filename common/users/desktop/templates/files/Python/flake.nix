@@ -9,8 +9,6 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              nixd
-              alejandra
               python314
               basedpyright
               ruff

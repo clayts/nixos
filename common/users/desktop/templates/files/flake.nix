@@ -8,9 +8,10 @@
           pkgs = import inputs.nixpkgs {inherit system;};
         in {
           default = pkgs.mkShell {
+            # ENVIRONMENT
+
             packages = with pkgs; [
-              superhtml
-              python313Packages.weasyprint
+              # PACKAGES
             ];
           };
         }

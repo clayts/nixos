@@ -16,8 +16,6 @@
             #     vulkan-loader
             #   ];
             packages = with pkgs; [
-              nixd
-              alejandra
               rustc # Rust compiler
               cargo # Rust package manager
               rustfmt # Code formatter
