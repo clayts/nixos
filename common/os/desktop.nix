@@ -17,6 +17,8 @@
 in {
   # Packages
   environment.systemPackages = with pkgs; [
+    nautilus
+    nautilus-python
     yelp
 
     # Hide CUPS
@@ -41,6 +43,12 @@ in {
       gnome-remote-desktop.enable = true;
     };
   };
+
+  # Load regular extensions
+  environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = "/run/current-system/sw/lib/nautilus/extensions-4";
+
+  # Load Python extensions via the nautilus-python extension
+  environment.pathsToLink = ["/share/nautilus-python/extensions"];
 
   # Remove bloat
   services.xserver.excludePackages = with pkgs; [xterm];
