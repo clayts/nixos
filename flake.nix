@@ -57,6 +57,10 @@
           };
         }
       );
+    homeModules = {
+      console = import ./common/users/console;
+      desktop = import ./common/users/desktop;
+    };
     nixosConfigurations = with builtins; let
       machines =
         filter
