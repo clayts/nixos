@@ -176,9 +176,12 @@ def hardware_name() -> str:
 
 def distro_name() -> str:
     release = platform.freedesktop_os_release()
+    name = release["PRETTY_NAME"]
+    if "BUILD_ID" in release:
+        name += " " + release["BUILD_ID"]
     # print(release)
     # quit()
-    return release["PRETTY_NAME"] + " " + release["BUILD_ID"]
+    return name
 
 
 def kernel_name() -> str:
