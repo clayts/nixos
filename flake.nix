@@ -33,13 +33,9 @@
               toilet
               ruff
 
-              (pkgs.writeShellScriptBin "nixos-clean" ''
-                nh clean all -k 3 && nix-store --optimise
-              '')
-              (pkgs.writeShellScriptBin "nixos-switch" ''
-                nh os switch /etc/nixos
-              '')
-              (pkgs.writeShellScriptBin "nixos-update" ''
+              (pkgs.writeShellScriptBin "clean" ''nh clean all -k 3 && nix-store --optimise'')
+              (pkgs.writeShellScriptBin "switch" ''nh os switch /etc/nixos'')
+              (pkgs.writeShellScriptBin "update" ''
                 cd /etc/nixos &&
 
                 # Update flake.lock
@@ -58,10 +54,6 @@
           };
         }
       );
-    homeModules = {
-      console = import ./common/users/console;
-      desktop = import ./common/users/desktop;
-    };
     nixosConfigurations = with builtins; let
       machines =
         filter
