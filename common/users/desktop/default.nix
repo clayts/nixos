@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./fonts.nix
     ./extensions.nix
     ./firefox.nix
     ./ghostty.nix
@@ -29,7 +28,15 @@
     musescore
     impression
   ];
-
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      sansSerif = ["Adwaita Sans" "Noto Sans"];
+      serif = ["Noto Serif"];
+      monospace = ["Cascadia Code" "Noto Mono"];
+      emoji = ["Noto Fonts Color Emoji"];
+    };
+  };
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
       "firefox.desktop"

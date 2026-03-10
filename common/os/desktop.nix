@@ -1,12 +1,8 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   interface = {
-    font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0) + " 10"}";
-    document-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0) + " 10"}";
-    monospace-font-name = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0) + " 10"}";
+    font-name = "Adwaita Sans 10";
+    document-font-name = "Adwaita Sans 10";
+    monospace-font-name = "Cascadia Code 10";
     cursor-theme = "Bibata-Modern-Classic";
     gtk-theme = "adw-gtk3";
     gtk-enable-primary-paste = false; # Disable middle-click paste as it can accidentally paste stuff when scrolling
@@ -15,8 +11,13 @@
     font-hinting = "full";
   };
 in {
-  # Packages
   environment.systemPackages = with pkgs; [
+    # Fonts
+    noto-fonts
+    adwaita-fonts
+    cascadia-code
+    noto-fonts-color-emoji
+
     nautilus
     nautilus-python
     yelp

@@ -14,8 +14,6 @@
 
   home = {
     packages = with pkgs; [
-      nixd
-      alejandra
       grc
       fzf
       lsd

@@ -17,14 +17,19 @@ in {
     extensions = [
       "colored-zed-icons-theme"
       "superhtml"
+      "nix"
     ];
     package = pkgs.symlinkJoin {
-      name = "zed-editor-with-langservers";
+      name = "zed-editor-full";
       paths = with pkgs; [
         zed-editor
+        cascadia-code
+
         tailwindcss-language-server
         package-version-server
         vscode-langservers-extracted
+        nixd
+        alejandra
       ];
     };
     themes.custom = ./theme.json;

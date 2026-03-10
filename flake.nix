@@ -27,6 +27,12 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              superhtml
+              basedpyright
+              python313Packages.terminaltexteffects
+              toilet
+              ruff
+
               (pkgs.writeShellScriptBin "nixos-clean" ''
                 nh clean all -k 3 && nix-store --optimise
               '')
@@ -48,11 +54,6 @@
                     git commit ./flake.lock -m "Update $(date)"
                 fi
               '')
-              superhtml
-              basedpyright
-              python313Packages.terminaltexteffects
-              toilet
-              ruff
             ];
           };
         }

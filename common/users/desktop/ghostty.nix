@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [(pkgs.writeShellScriptBin "xterm" ''${pkgs.ghostty} $*'')]; # This allows gnome to use ghostty as a default terminal when running .desktop files that require a terminal
   programs.ghostty = {
     enable = true;
@@ -14,7 +10,7 @@
         ''ctrl+k=text:\x03''
       ];
 
-      font-family = "${(builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0)}";
+      font-family = "Cascadia Code";
       font-size = 10;
       adjust-cell-height = -2;
 
