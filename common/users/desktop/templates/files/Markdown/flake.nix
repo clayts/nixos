@@ -9,6 +9,8 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              nixd
+              alejandra
               pandoc
             ];
           };

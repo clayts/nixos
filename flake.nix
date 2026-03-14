@@ -27,6 +27,10 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              nixd
+              alejandra
+              package-version-server
+              vscode-langservers-extracted
               superhtml
               basedpyright
               python313Packages.terminaltexteffects

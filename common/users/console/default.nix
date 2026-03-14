@@ -64,6 +64,7 @@
     };
     sessionVariables = {
       GREP_OPTIONS = "--color=auto";
+      DIRENV_WARN_TIMEOUT = 0;
     };
     dotDir = "${config.xdg.configHome}/zsh";
     historySubstringSearch.enable = true;

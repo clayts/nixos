@@ -8,25 +8,26 @@
           pkgs = import inputs.nixpkgs {inherit system;};
         in {
           default = pkgs.mkShell {
-            # LD_LIBRARY_PATH = with pkgs;
-            #   lib.makeLibraryPath [
-            #     libGL
-            #     libxkbcommon
-            #     wayland
-            #     vulkan-loader
-            #   ];
+            LD_LIBRARY_PATH = with pkgs;
+              lib.makeLibraryPath [
+                # libGL
+                # libxkbcommon
+                # wayland
+                # vulkan-loader
+              ];
             packages = with pkgs; [
+              nixd
+              alejandra
               rustc # Rust compiler
               cargo # Rust package manager
               rustfmt # Code formatter
               clippy # Linter
               rust-analyzer # Language server for IDE support
               llvmPackages.bintools
-              # trunk
-              # package-version-server
+              # trunk # wasm packager
               pkg-config
-              # alsa-lib.dev
-              # gnuplot
+              # alsa-lib.dev # alsa
+              # gnuplot # debug plots
             ];
           };
         }

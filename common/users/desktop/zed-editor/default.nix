@@ -1,17 +1,4 @@
-{pkgs, ...}: let
-  # overlay = self: super: {
-  #   zed-editor = super.zed-editor.overrideAttrs (prev: {
-  #     version = "main";
-  #     src = pkgs.fetchFromGitHub {
-  #       owner = "clayts";
-  #       repo = "zed";
-  #       rev = "main";
-  #       sha256 = "";
-  #     };
-  #   });
-  # };
-in {
-  # nixpkgs.overlays = [overlay];
+{pkgs, ...}: {
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -20,16 +7,11 @@ in {
       "nix"
     ];
     package = pkgs.symlinkJoin {
-      name = "zed-editor-full";
+      name = "zed-editor-with-fonts";
       paths = with pkgs; [
         zed-editor
         cascadia-code
-
-        tailwindcss-language-server
-        package-version-server
-        vscode-langservers-extracted
-        nixd
-        alejandra
+        adwaita-fonts
       ];
     };
     themes.custom = ./theme.json;
@@ -57,7 +39,7 @@ in {
       buffer_font_weight = 400;
       buffer_font_size = 13;
       buffer_line_height.custom = 1.15;
-      ui_font_family = ".SystemUIFont";
+      ui_font_family = "Adwaita Sans";
       ui_font_size = 16;
       ui_font_weight = 300;
       restore_on_startup = "none";
