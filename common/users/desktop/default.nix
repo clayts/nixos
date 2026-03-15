@@ -25,8 +25,8 @@
     celluloid
     gitg
     papers
-    musescore
     impression
+    baobab
   ];
   fonts.fontconfig = {
     enable = true;

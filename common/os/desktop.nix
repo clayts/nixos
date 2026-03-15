@@ -18,20 +18,13 @@ in {
     cascadia-code
     noto-fonts-color-emoji
 
-    nautilus
-    nautilus-python
-    yelp
-
-    # Hide CUPS
-    (pkgs.makeDesktopItem {
-      name = "cups";
-      desktopName = "";
-      noDisplay = true;
-    })
-
     # Theme
     bibata-cursors
     adw-gtk3
+
+    nautilus
+    nautilus-python
+    yelp
   ];
 
   # GNOME
