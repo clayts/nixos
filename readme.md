@@ -1,7 +1,6 @@
 # To Do
 
 - Defeat IPU7
-- Silence direnv warnings
 - earthpaper unexpectedly activates sometimes
 
 - Check out:

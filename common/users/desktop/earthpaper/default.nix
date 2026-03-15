@@ -49,7 +49,6 @@ in {
       Restart = "on-failure";
       RestartSec = 900; # seconds between retries
     };
-    # Install.WantedBy = ["default.target"];
   };
 
   systemd.user.timers."earthpaper" = {
@@ -61,8 +60,4 @@ in {
     };
     Install.WantedBy = ["timers.target"];
   };
-
-  home.packages = [
-    earthpaper
-  ];
 }

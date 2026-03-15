@@ -7,7 +7,6 @@
     ./desktop.nix
     ./console.nix
     ./steam.nix
-    ./home-manager.nix
   ];
 
   # Version

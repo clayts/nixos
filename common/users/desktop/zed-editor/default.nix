@@ -51,9 +51,7 @@
         light = "Ayu Light";
         dark = "Custom";
       };
-
       node.path = "${pkgs.nodejs}/bin/node";
-
       languages = {
         Nix.language_servers = ["nixd"];
         HTML = {
@@ -61,7 +59,6 @@
           formatter.language_server.name = "superhtml";
         };
       };
-
       lsp = {
         nixd.settings.formatting.command = ["alejandra"];
         rust-analyzer.initialization_options.check.command = "clippy";

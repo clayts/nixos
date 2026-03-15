@@ -1,5 +1,10 @@
-{...}: {
+{
+  inputs,
+  specialArgs,
+  ...
+}: {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./root.nix
     ./user.nix
     ./guest.nix
@@ -21,4 +26,10 @@
   home-manager.sharedModules = [
     {home.stateVersion = "25.05";}
   ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = specialArgs;
+    backupFileExtension = "home-manager-backup";
+  };
 }
