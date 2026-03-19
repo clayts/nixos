@@ -17,15 +17,17 @@
     themes.custom = ./theme.json;
     userSettings = {
       hard_tabs = true;
-      git_panel. dock = "right";
+      git_panel.dock = "right";
+      git_panel.status_style = "icon";
+      git_panel.default_width = 240;
       icon_theme = "Colored Zed Icons Theme Dark";
       show_edit_predictions = false;
       project_panel.indent_guides.show = "never";
+      project_panel.default_width = 240;
       indent_guides.enabled = false;
       notification_panel.button = false;
       disable_ai = true;
       diagnostics.inline.enabled = true;
-      features.edit_prediction_provider = "zed";
       terminal.button = false;
       debugger.button = false;
       outline_panel.button = false;
@@ -36,14 +38,29 @@
         calt = true;
         ss01 = true;
       };
+      gutter = {
+        line_numbers = false;
+        runnables = false;
+        breakpoints = false;
+        folds = false;
+      };
+      tab_bar = {
+        show = false;
+        show_nav_history_buttons = true;
+        show_tab_bar_buttons = true;
+      };
+      toolbar = {
+        breadcrumbs = true;
+        quick_actions = true;
+      };
+      restore_on_startup = "empty_tab";
       buffer_font_weight = 400;
       buffer_font_size = 13;
       buffer_line_height.custom = 1.15;
       ui_font_family = "Adwaita Sans";
       ui_font_size = 16;
       ui_font_weight = 300;
-      restore_on_startup = "none";
-      soft_wrap = "bounded";
+      soft_wrap = "preferred_line_length";
       preferred_line_length = 100;
       tabs.file_icons = true;
       theme = {
