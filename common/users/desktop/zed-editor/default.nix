@@ -5,11 +5,13 @@
       "colored-zed-icons-theme"
       "superhtml"
       "nix"
+      "color-highlight"
     ];
     package = pkgs.symlinkJoin {
-      name = "zed-editor-with-fonts";
+      name = "zed-editor-bundle";
       paths = with pkgs; [
         zed-editor
+        color-lsp
         cascadia-code
         adwaita-fonts
       ];
@@ -19,11 +21,9 @@
       hard_tabs = true;
       git_panel.dock = "right";
       git_panel.status_style = "icon";
-      git_panel.default_width = 240;
       icon_theme = "Colored Zed Icons Theme Dark";
       show_edit_predictions = false;
       project_panel.indent_guides.show = "never";
-      project_panel.default_width = 240;
       indent_guides.enabled = false;
       notification_panel.button = false;
       disable_ai = true;
@@ -76,6 +76,7 @@
           formatter.language_server.name = "superhtml";
         };
       };
+      lsp_document_colors = "background";
       lsp = {
         nixd.settings.formatting.command = ["alejandra"];
         rust-analyzer.initialization_options.check.command = "clippy";

@@ -39,7 +39,7 @@
 				"editor.active_line_number": "#b4b4b4",
 				"info": "#FFE66D",
 
-				"search.match_background": null,
+				"search.match_background": "#686869",
 
 				"scrollbar_thumb.background": "#3A3F4C77",
 				"scrollbar.thumb.hover_background": "#3A3F4CAA",
