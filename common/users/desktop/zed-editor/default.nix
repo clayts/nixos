@@ -24,6 +24,14 @@
       icon_theme = "Colored Zed Icons Theme Dark";
       show_edit_predictions = false;
       project_panel.indent_guides.show = "never";
+      project_panel = {
+        starts_open = false;
+        auto_open = {
+          on_create = false;
+          on_paste = false;
+          on_drop = false;
+        };
+      };
       indent_guides.enabled = false;
       notification_panel.button = false;
       disable_ai = true;
