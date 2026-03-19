@@ -60,6 +60,7 @@
       l = "lsd --almost-all --long --git --group-dirs first --no-symlink --date relative";
       ls = lib.mkForce "lsd --group-dirs first";
       lt = lib.mkForce "lsd --tree --long --git --group-dirs first --no-symlink --date relative";
+      ssh = "TERM='xterm-256color' ssh";
       cd = "z";
     };
     sessionVariables = {
