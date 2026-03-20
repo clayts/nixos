@@ -77,8 +77,8 @@
       buffer_line_height.custom = 1.19;
       # buffer_line_height.custom = null;
       ui_font_family = "Adwaita Sans";
-      ui_font_size = 16;
-      ui_font_weight = 300;
+      ui_font_size = 15;
+      ui_font_weight = 400;
       soft_wrap = "none";
       preferred_line_length = 100;
       tabs.file_icons = true;
