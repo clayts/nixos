@@ -14,23 +14,32 @@
         color-lsp
         cascadia-code
         adwaita-fonts
+        joypixels
       ];
     };
     themes.custom = ./theme.json;
     userSettings = {
       hard_tabs = true;
-      git_panel.dock = "right";
-      git_panel.status_style = "icon";
+      git = {
+        inline_blame = {
+          show_commit_summary = true;
+          enabled = false;
+        };
+      };
+      git_panel = {
+        default_width = 0;
+        dock = "right";
+        status_style = "icon";
+      };
+      scroll_beyond_last_line = "off";
       icon_theme = "Colored Zed Icons Theme Dark";
       show_edit_predictions = false;
-      project_panel.indent_guides.show = "never";
       project_panel = {
+        indent_guides.show = "never";
+        default_width = 0;
         starts_open = false;
-        auto_open = {
-          on_create = false;
-          on_paste = false;
-          on_drop = false;
-        };
+        hide_root = true;
+        entry_spacing = "standard";
       };
       indent_guides.enabled = false;
       notification_panel.button = false;
@@ -64,11 +73,13 @@
       restore_on_startup = "empty_tab";
       buffer_font_weight = 400;
       buffer_font_size = 13;
-      buffer_line_height.custom = 1.15;
+      # buffer_line_height.custom = 1.15;
+      buffer_line_height.custom = 1.19;
+      # buffer_line_height.custom = null;
       ui_font_family = "Adwaita Sans";
       ui_font_size = 16;
       ui_font_weight = 300;
-      soft_wrap = "preferred_line_length";
+      soft_wrap = "none";
       preferred_line_length = 100;
       tabs.file_icons = true;
       theme = {
@@ -78,9 +89,9 @@
       };
       node.path = "${pkgs.nodejs}/bin/node";
       languages = {
-        Nix.language_servers = ["nixd"];
+        Nix.language_servers = ["nixd" "!nil" "..."];
         HTML = {
-          language_servers = ["superhtml"];
+          language_servers = ["superhtml" "..."];
           formatter.language_server.name = "superhtml";
         };
       };

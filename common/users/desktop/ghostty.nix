@@ -10,9 +10,12 @@
         ''ctrl+k=text:\x03''
       ];
 
-      font-family = "Cascadia Code";
+      font-family = [
+        "Cascadia Code"
+        "JoyPixels"
+      ];
       font-size = 10;
-      adjust-cell-height = -2;
+      adjust-cell-height = -0;
 
       # ghostty +list-themes
       theme = "Adwaita Dark";

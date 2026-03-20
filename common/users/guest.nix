@@ -1,4 +1,4 @@
-{...}: let
+_: let
   user = "guest";
 in {
   users.users.${user} = {

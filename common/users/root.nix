@@ -1,4 +1,4 @@
-{...}: let
+_: let
   user = "root";
 in {
   home-manager.users.${user} = {

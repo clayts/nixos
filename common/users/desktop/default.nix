@@ -13,6 +13,12 @@
     ./templates
   ];
   home.packages = with pkgs; [
+    # Fonts
+    noto-fonts
+    adwaita-fonts
+    cascadia-code
+    joypixels
+
     gnome-firmware
     loupe
     file-roller
@@ -34,7 +40,7 @@
       sansSerif = ["Adwaita Sans" "Noto Sans"];
       serif = ["Noto Serif"];
       monospace = ["Cascadia Code" "Noto Mono"];
-      emoji = ["Noto Fonts Color Emoji"];
+      emoji = ["JoyPixels"];
     };
   };
   dconf.settings = {
@@ -62,6 +68,6 @@
       switch-applications = ["<Alt>Tab"];
       switch-applications-backward = ["<Shift><Alt>Tab"];
     };
-    "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);};
+    "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray lib.gvariant.type.string;};
   };
 }

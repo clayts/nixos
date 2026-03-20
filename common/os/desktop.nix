@@ -12,12 +12,6 @@
   };
 in {
   environment.systemPackages = with pkgs; [
-    # Fonts
-    noto-fonts
-    adwaita-fonts
-    cascadia-code
-    noto-fonts-color-emoji
-
     # Theme
     bibata-cursors
     adw-gtk3

@@ -38,17 +38,19 @@
     variant = "";
   };
   time.timeZone = "Europe/London";
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
   };
   environment.systemPackages = [
     (pkgs.aspellWithDicts (dicts: [
@@ -67,43 +69,39 @@
   users.defaultUserShell = pkgs.zsh;
 
   # Sudo
-  security.sudo.wheelNeedsPassword = false;
-  security.sudo.extraConfig = ''
-    Defaults:root,%wheel env_keep+=SHLVL
-  ''; # Fix sudo shlvl
-
+  security.sudo = {
+    wheelNeedsPassword = false;
+    extraConfig = ''
+      Defaults:root,%wheel env_keep+=SHLVL
+    ''; # Fix sudo shlvl
+  };
   # Nix
   programs.nh = {
     enable = true;
   };
   nix = {
     enable = true;
+    package = pkgs.lixPackageSets.stable.lix;
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-    };
+    settings.experimental-features = ["nix-command" "flakes"];
   };
-  ## Allow unfree and experimental
-  nixpkgs.config.allowUnfree = true;
-  ## Prevents annoying error messages
-  system.activationScripts.empty-channel = {
-    text = ''
-      mkdir -p /nix/var/nix/profiles/per-user/root/channels
-    '';
+
+  # Nixpkgs
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.joypixels.acceptLicense = true;
+    overlays = [
+      (final: prev: {
+        inherit
+          (prev.lixPackageSets.stable)
+          nixpkgs-review
+          nix-eval-jobs
+          nix-fast-build
+          colmena
+          ;
+      })
+    ];
   };
-  ## Lix
-  nixpkgs.overlays = [
-    (final: prev: {
-      inherit
-        (prev.lixPackageSets.stable)
-        nixpkgs-review
-        nix-eval-jobs
-        nix-fast-build
-        colmena
-        ;
-    })
-  ];
-  nix.package = pkgs.lixPackageSets.stable.lix;
 
   # Firmware
   services.fwupd.enable = true;
