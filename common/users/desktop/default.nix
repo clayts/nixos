@@ -46,7 +46,7 @@
   dconf.settings = {
     "org/gnome/shell".favorite-apps = [
       "firefox.desktop"
-      "org.gnome.Nautilus.desktop"
+      "com.mitchellh.ghostty.desktop"
     ];
     "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
     "org/gnome/desktop/peripherals/touchpad".speed = 0.1;
