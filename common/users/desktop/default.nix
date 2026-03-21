@@ -48,13 +48,18 @@
       "firefox.desktop"
       "com.mitchellh.ghostty.desktop"
     ];
-    "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false; # Required for touchpad/keyboard games
+    # Required for touchpad/keyboard games
+    "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false;
+
+    # Silences annoying daily beeps
+    "org/gnome/evolution-data-server/calendar".notify-enable-audio = false;
+
+    "org/gnome/settings-daemon/plugins/power".power-button-action = "hibernate";
     "org/gnome/desktop/peripherals/touchpad".speed = 0.1;
     "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
     "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
     "org/gnome/desktop/background".picture-uri = ".earthpaper/image.jpeg";
-    "org/gnome/evolution-data-server/calendar".notify-enable-audio = false; # Silences annoying daily beeps
-    "org/gnome/settings-daemon/plugins/power".power-button-action = "hibernate";
+
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tiling = true;
@@ -68,6 +73,8 @@
       switch-applications = ["<Alt>Tab"];
       switch-applications-backward = ["<Shift><Alt>Tab"];
     };
-    "org/gnome/desktop/app-folders" = {folder-children = lib.gvariant.mkEmptyArray lib.gvariant.type.string;};
+    "org/gnome/desktop/app-folders" = {
+      folder-children = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+    };
   };
 }
